@@ -8,4 +8,6 @@
 
 class IngarPipeline(object):
     def process_item(self, item, spider):
+        item_str = item.get('title','')
+        print ("SPIDERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR"+item_str)
         return item
