@@ -25,7 +25,7 @@ class IngarPipeline(object):
 
     def createTables(self):
 	    self.cursor.execute('CREATE TABLE IF NOT EXISTS crawled_products \
-	    (id INTEGER PRIMARY KEY, title VARCHAR(2000), url VARCHAR(100), price DOUBLE, sizes TEXT, tags TEXT)')
+	    (id INTEGER PRIMARY KEY, title VARCHAR(2000), url VARCHAR(100), img VARCHAR(2000), price DOUBLE, sizes TEXT, tags TEXT)')
 
     def storeInDb(self, item):
         item_str = item.get('title','')
@@ -35,8 +35,8 @@ class IngarPipeline(object):
             log.msg("Item already in database: %s" % item, level=log.DEBUG)
         else:
             self.cursor.execute(
-                "insert into crawled_products (title, url, price, sizes, tags) values (?, ?, ?, ? ,?)",
-                    (item.get('title', ''), item.get('url',''), item.get('price',''),
+                "insert into crawled_products (title, url, img, price, sizes, tags) values (?, ?, ?, ?, ? ,?)",
+                    (item.get('title', ''), item.get('url',''), item.get('img',''), item.get('price',''),
                      item.get('sizes',''), item.get('tags','')
                      ))
 

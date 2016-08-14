@@ -45,11 +45,14 @@ class StackSpider(Spider):
         sizes = response.css("select[id*=maat] > option::attr('value')").extract()[1:]
         sizes = '|'.join(sizes)
 
+        img = response.css("img[class*=wp-post-image]::attr('src')").extract()[0]
+
         product = dict()
         product['url'] = response.url
         product['title'] = title
         product['tags'] = tags
         product['price'] = price
         product['sizes'] = sizes
+        product['img'] = img
         print (product)
         yield IngarItem(product)
