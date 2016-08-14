@@ -23,19 +23,16 @@ class StackSpider(Spider):
             yield scrapy.Request(product_link, callback=self.parse_product_details)
 
     def parse_product_details(self, response):
-        if response.url != "http://ingar.nl/shop/peopletree-carrie-bolero-blauw/":
-            pass
 
-        #print ("SPIDER:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;::" + response.url)
         tags = response.css("div[id*=breadcrum] > a::text").extract()
         tags = tags[2:]
         tags = '|'.join(tags)
         title = response.css("h1::text").extract()[0]
         price = response.css("div[class*=price-block] > span[class*=woocommerce-Price-amount]::text").extract()
-        print ("SHERNAZ:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;::" + str(price))
+
+        #TODO: We might wanna extract original prices, if price is disconted
         if len(price) == 0:
-            price = response.css("div[class*=price-block] > span[class*=woocommerce-Price-currencySymbol]::text").extract()
-            print ("SHERNAZ:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;::" + str(price))
+            price = response.css("div[class*=price-block] > ins > span[class*=woocommerce-Price-amount]::text").extract()
             if len(price) == 0:
                 price = 0.0
             else:
@@ -51,7 +48,7 @@ class StackSpider(Spider):
         product = dict()
         product['url'] = response.url
         product['title'] = title
-        product['tags'] = tags[2:]
+        product['tags'] = tags
         product['price'] = price
         product['sizes'] = sizes
         print (product)

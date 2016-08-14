@@ -25,11 +25,10 @@ class IngarPipeline(object):
 
     def createTables(self):
 	    self.cursor.execute('CREATE TABLE IF NOT EXISTS crawled_products \
-	    (id BIGINT PRIMARY KEY, title VARCHAR(2000), url VARCHAR(100), price DOUBLE, sizes TEXT, tags TEXT)')
+	    (id INTEGER PRIMARY KEY, title VARCHAR(2000), url VARCHAR(100), price DOUBLE, sizes TEXT, tags TEXT)')
 
     def storeInDb(self, item):
         item_str = item.get('title','')
-        print ("SPIDERRRRRRRRRRR::::::::::::::::::::::::::::::::::::::"+item_str)
         self.cursor.execute("select * from crawled_products where url=?", [item.get('url','')])
         result = self.cursor.fetchone()
         if result:
