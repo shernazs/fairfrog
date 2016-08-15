@@ -24,20 +24,20 @@ class IngarPipeline(object):
         self.con.close()
 
     def createAndCheckTables(self):
-        self.cursor.execute('CREATE TABLE IF NOT EXISTS crawled_products \
-	    (id INTEGER PRIMARY KEY, webshop VARCHAR(20), title VARCHAR(2000), url VARCHAR(100), img VARCHAR(2000), price DOUBLE, sizes TEXT, tags TEXT)')
+        self.cursor.execute('CREATE TABLE IF NOT EXISTS shop_crawledproducts \
+	    (id INTEGER PRIMARY KEY, webshop VARCHAR(20), title VARCHAR(100), url VARCHAR(2000), img VARCHAR(2000), price DOUBLE, sizes TEXT, tags TEXT)')
 
-        self.cursor.execute("delete from crawled_products where webshop='ingar'")
+        self.cursor.execute("delete from shop_crawledproducts where webshop='ingar'")
 
     def storeInDb(self, item):
         item_str = item.get('title','')
-        self.cursor.execute("select * from crawled_products where url=?", [item.get('url','')])
+        self.cursor.execute("select * from shop_crawledproducts where url=?", [item.get('url','')])
         result = self.cursor.fetchone()
         if result:
             log.msg("Item already in database: %s" % item, level=log.DEBUG)
         else:
             self.cursor.execute(
-                "insert into crawled_products (webshop, title, url, img, price, sizes, tags) values (?, ?, ?, ?, ? ,?, ?)",
+                "insert into shop_crawledproducts (webshop, title, url, img, price, sizes, tags) values (?, ?, ?, ?, ? ,?, ?)",
                     ( 'ingar', item.get('title', ''), item.get('url',''), item.get('img',''), item.get('price',''),
                      item.get('sizes',''), item.get('tags','')
                      ))
