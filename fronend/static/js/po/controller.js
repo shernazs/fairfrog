@@ -10,7 +10,7 @@ angular.module('webshop.controllers', [])
 	$scope.getProducts = function() {
 		var config = {
       		type: "GET",
-      		url: "https://fairfrog-alok416.c9users.io/webshop/get_products",
+      		url: "http://fairfrog-alok416.c9users.io/webshop/get_products",
       		dataType: 'json',
       		data: {
         		// 'longitude' : $scope.longitude,
