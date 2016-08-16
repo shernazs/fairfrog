@@ -1,5 +1,5 @@
-angular.module('savepo.controllers', [])
-.controller("savepo-controller", function( $scope ) {
+angular.module('webshop.controllers', [])
+.controller("webshop-controller", function( $scope ) {
 
 	$scope.initFunction = function() {
 		console.log("controller init");

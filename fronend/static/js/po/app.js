@@ -1,5 +1,5 @@
-angular.module('savepo', [
-		'savepo.controllers'
+angular.module('webshop', [
+		'webshop.controllers'
 ])
 .config([
 	'$httpProvider',
