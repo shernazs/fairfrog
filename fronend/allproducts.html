@@ -93,21 +93,120 @@
 	    margin: 0 0 10px 10px;
 	    overflow: hidden;
 	    background: #fff;
+        padding-bottom: 50px;
+        max-height:370px;
       }
       .items:hover{
-      	border: 1px solid red;
+      	border: 1px solid #00B2EE;
       }
       img.product-image{
       	width: 276px;
       	height:276px;
-      	margin-top:7px;
       }
       .product-title{
       	text-align: center;
+      	/*font-weight: bold;*/
+    	margin-bottom: 10px;
+    	/*color:#659D32;*/
+        color:#000000;
+    	font-size: 17px;
+    	font-family: "Comic Sans MS", cursive, sans-serif;
+        margin-top: 30px;
       }
       .product-price{
       	text-align: center;
+  	    margin-bottom: 10px;
+	    font-size: 18px;
+	    font-weight: bold;
+	    color:#659D32;
       }
+      .sidebar{
+      	height:100%;
+      }
+      .sidebar-height{
+      	    width: 170px;
+      	float: left;
+    min-height: 1px;
+    margin-left: 30px;
+      	height:100% !important;
+      }
+      .content {
+    border: 1px solid #CCCCCC;
+    height: 400px;
+    line-height: 400px;
+    margin: 50px auto;
+    overflow: hidden;
+    position: relative;
+    width: 80%;
+}
+
+.corner-link {
+  -webkit-transform: rotate(-45deg);  
+     -moz-transform: rotate(-45deg); 
+      -ms-transform: rotate(-45deg); 
+       -o-transform: rotate(-45deg); 
+          transform: rotate(-45deg);
+  -webkit-transform-origin: 0 0;
+     -moz-transform-origin: 0 0;
+      -ms-transform-origin: 0 0;
+       -o-transform-origin: 0 0;
+          transform-origin: 0 0;
+    right: 0;
+    top: 0;
+    display: block;
+    height: 150px;
+    position: absolute;
+    width: 100px;
+    z-index: 3;
+}
+.corner-text-wrapper {
+  -webkit-transform: rotate(45deg);  
+     -moz-transform: rotate(45deg);  
+      -ms-transform: rotate(45deg);  
+       -o-transform: rotate(45deg);  
+          transform: rotate(45deg);
+    /*clip: rect(0px, 141.421px, 70.7107px, 0px);*/
+    height: 141.421px;
+    position: absolute;
+    right: -20.7107px;
+    top: -20.7107px;
+    width: 141.421px;
+    z-index: 1;
+}
+.corner-text {
+  color: white;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    left: 31px;
+    top: 17px;
+    /* background-color: #f1f1f1; */
+    /* background-color: transparent; */
+    background: rgba(204,255,204,0.3);
+    display: block;
+    height: 80px;
+    position: absolute;
+    width: 80px;
+    z-index: 2;
+    /* opacity: 0.5; */
+    border-bottom-left-radius: 100%;
+}
+.corner-text span {
+  position: relative;
+  font-family: "HelveticaNeue-CondensedBold", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 700;
+  left: 10px;
+  display: block;
+  text-align: center;
+      font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    margin-top: 22px;
+    /*opacity:1;*/
+
+}
       
     
     </style>
@@ -140,30 +239,40 @@
     
     <div class="container">
       <div class="row">
-        <div class="span2">
-          <div class="well sidebar-nav">
+        <div class="sidebar-height">
+          <div class="well sidebar-nav sidebar">
             <ul class="nav nav-list">
-              <li><a href="allproducts.html"><button class="btn btn-primary btn-lg btn-block" type="submit">All Products</button></a></li>
-              <li><a href="#"><button class="btn btn-primary btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-primary btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-primary btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-primary btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-primary btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-primary btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-primary btn-lg btn-block" type="submit">Button</button></a></li>
+              <li><a href="allproducts.html"><button class="btn btn-success btn-lg btn-block" type="submit">All Products</button></a></li>
+              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
+              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
+              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
+              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
+              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
+              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
+              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
+        
+
         <div class="span9">
           <div class="row-fluid">
 	          <div ng-repeat="product in allProducts" ng-switch on="$index % 3">
 	          	<div ng-switch-when="0">
 	          		<div class="span4" ng-repeat="i in [0,1,2]">
-	          			<div class="items">
-		          			<div><img class="product-image" src={{allProducts[$parent.$index+i].img}}></div>
-		          			<hr>
+	          			<div class="items ">
+		          			
+		          			<div style="position:relative;"><img class="product-image" src={{allProducts[$parent.$index+i].img}}>
+                                <a href="#" class="corner-link"></a>
+                                <div class="corner-text-wrapper">
+                                    <div class="corner-text">
+                                        <span>&euro;{{allProducts[$parent.$index+ i].price}}</span>
+                                    </div>
+                                </div> 
+                            </div>
+		          		
 		          			<div class="product-title">{{allProducts[$parent.$index+ i].title}}</div>
-		          			<div class="product-price">&euro; {{allProducts[$parent.$index+ i].price}}</div>
+		          			<!-- <div class="product-price">&euro;{{allProducts[$parent.$index+ i].price}}</div> -->
 		          		</div>	
 	          		</div>
 	          		</div>
