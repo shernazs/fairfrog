@@ -1,5 +1,5 @@
 from scrapy import Spider, Request
-from scrapy_tutorial.items import OrganicWearItem
+from organic_wear.items import OrganicWearItem
 from re import search
 
 class OrganicWear_Spider(Spider):
