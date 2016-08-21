@@ -15,12 +15,11 @@ class Upcycled_Spider(Spider):
 	def parse_product_details(self, response):
 		product = response.xpath('//div[contains(@class, "article product")]')
 		item = UpcycledItem()
-		item['product_title'] = product.xpath('//h1[@class="product-title"]/text()').extract()[0]
+		item['title'] = product.xpath('//h1[@class="product-title"]/text()').extract()[0]
 		item['webshop_name'] = "Upcycled"
 		item['url'] = response.url
 		item['description'] = '\n'.join(product.xpath('//div[@data-tab-content="description"]//p/text()').extract()).encode('UTF-8')
 		item['product_cat'] = ["Tassen"]
-		item['product_tags'] = item['product_cat']
 		item['style'] = ["W"]
 		item['colors'] = ""
 		item['sizes'] = dict(zip(filter(lambda x: not search(r'\d+', x), product.xpath('//table[@class="article-specs"]//td/text()').extract()), filter(lambda x: search(r'\d+', x), product.xpath('//table[@class="article-specs"]//td/text()').extract())))

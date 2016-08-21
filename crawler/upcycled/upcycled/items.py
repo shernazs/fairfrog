@@ -9,11 +9,10 @@ from scrapy.item import Item, Field
 
 url = "http://upcycled.nl/"
 class UpcycledItem(Item):
-	product_title = Field()
+	title = Field()
 	description = Field()
 	webshop_name = Field()
 	product_cat = Field()
-	product_tags = Field()
 	style = Field()
 	colors = Field()
 	sizes = Field()

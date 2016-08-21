@@ -9,14 +9,13 @@ from scrapy.item import Item, Field
 
 url = "http://organicwear.nl/shop/"
 class OrganicWearItem(Item):
-	product_title = Field()
+	title = Field()
 	description = Field()
 	webshop_name = Field()
 	product_cat = Field()
-	product_tags = Field()
 	style = Field()
-	color = Field()
-	size = Field()
+	colors = Field()
+	sizes = Field()
 	price = Field()
 	discount_price = Field()
 	url = Field()
