@@ -11,12 +11,12 @@ class StackSpider(Spider):
     ]
 
     def parse(self, response):
-        for next_page in response.css("div[class*=bottom] > div > ul > li > a[class*=page-numbers]::attr('href')"):
+        for next_page in response.xpath('//a[@class="page-numbers"]/@href'):
             next_page = response.urljoin(next_page.extract())
             yield Request(next_page, callback=self.parse)
 
-        for product_link in response.css("section > div > div > div > a[class*=woocommerce-LoopProduct-link]::attr('href')"):
-            product_link = response.urljoin(product_link.extract())
+	for product_link in response.xpath('//a[@class="woocommerce-LoopProduct-link"]/@href'):
+	    product_link = response.urljoin(product_link.extract())
             yield Request(product_link, callback=self.parse_product_details)
 
     def parse_product_details(self, response):

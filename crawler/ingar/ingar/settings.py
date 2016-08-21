@@ -64,9 +64,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-    'ingar.pipelines.IngarPipeline': 0, # the number here is the order in which pipelines are executed
-}
+#ITEM_PIPELINES = {
+#    'ingar.pipelines.IngarPipeline': 0, # the number here is the order in which pipelines are executed
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
