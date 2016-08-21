@@ -29,7 +29,7 @@ class StackSpider(Spider):
         tags = '|'.join(tags)
         title = response.css("h1::text").extract()[0]
         price = response.css("div[class*=price-block] > span[class*=woocommerce-Price-amount]::text").extract()
-
+        brand = response.css("ul[class*=product-tabs] > li > a::text").extract()[0]
         #TODO: We might wanna extract original prices, if price is disconted
         if len(price) == 0:
             price = response.css("div[class*=price-block] > ins > span[class*=woocommerce-Price-amount]::text").extract()
@@ -54,5 +54,6 @@ class StackSpider(Spider):
         product['price'] = price
         product['sizes'] = sizes
         product['img'] = img
+        product['brand'] = brand
         print (product)
         yield IngarItem(product)

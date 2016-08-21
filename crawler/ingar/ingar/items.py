@@ -8,4 +8,5 @@ class IngarItem(Item):
     tags = Field()
     price = Field()
     sizes = Field()
+    brand = Field()
 

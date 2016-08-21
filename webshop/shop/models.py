@@ -10,7 +10,9 @@ class CrawledProducts(models.Model):
     title = models.CharField(max_length=100)
     url = models.CharField(max_length=2000)
     img = models.CharField(max_length=2000)
+    brand = models.CharField(max_length=100, default=None, blank=True, null=True)
     price = models.FloatField()
     sizes = models.TextField()
     tags = models.TextField()
+
 

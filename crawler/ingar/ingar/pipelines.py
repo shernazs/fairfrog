@@ -25,7 +25,8 @@ class IngarPipeline(object):
 
     def createAndCheckTables(self):
         self.cursor.execute('CREATE TABLE IF NOT EXISTS shop_crawledproducts \
-	    (id INTEGER PRIMARY KEY, webshop VARCHAR(20), title VARCHAR(100), url VARCHAR(2000), img VARCHAR(2000), price DOUBLE, sizes TEXT, tags TEXT)')
+	    (id INTEGER PRIMARY KEY, webshop VARCHAR(20), title VARCHAR(100), url VARCHAR(2000), ' \
+            'img VARCHAR(2000), brand VARCHAR(100), price DOUBLE, sizes TEXT, tags TEXT)')
 
         self.cursor.execute("delete from shop_crawledproducts where webshop='ingar'")
 
@@ -37,9 +38,10 @@ class IngarPipeline(object):
             log.msg("Item already in database: %s" % item, level=log.DEBUG)
         else:
             self.cursor.execute(
-                "insert into shop_crawledproducts (webshop, title, url, img, price, sizes, tags) values (?, ?, ?, ?, ? ,?, ?)",
-                    ( 'ingar', item.get('title', ''), item.get('url',''), item.get('img',''), item.get('price',''),
-                     item.get('sizes',''), item.get('tags','')
+                "insert into shop_crawledproducts (webshop, title, url, img, BRAND, price, sizes, tags) \
+                    values (?, ?, ?, ?, ? ,?, ?, ?)",
+                    ( 'ingar', item.get('title', ''), item.get('url',''), item.get('img',''),
+                      item.get('brand',''), item.get('price',''), item.get('sizes',''), item.get('tags','')
                      ))
 
             self.con.commit()
