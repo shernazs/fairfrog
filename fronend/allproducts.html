@@ -260,10 +260,9 @@
 	          <div ng-repeat="product in allProducts" ng-switch on="$index % 3">
 	          	<div ng-switch-when="0">
 	          		<div class="span4" ng-repeat="i in [0,1,2]">
-	          			<div class="items ">
-		          			
+	          			<div class="items" ng-click="goToPDP(allProducts[$parent.$index+i].url)">
 		          			<div style="position:relative;"><img class="product-image" src={{allProducts[$parent.$index+i].img}}>
-                                <a href="#" class="corner-link"></a>
+                                <span class="corner-link"></span>
                                 <div class="corner-text-wrapper">
                                     <div class="corner-text">
                                         <span>&euro;{{allProducts[$parent.$index+ i].price}}</span>

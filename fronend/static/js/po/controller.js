@@ -1,5 +1,5 @@
 angular.module('webshop.controllers', [])
-.controller("webshop-controller", function( $scope ) {
+.controller("webshop-controller", function( $scope, $window ) {
 	$scope.allProducts = [];
 	$scope.initFunction = function() {
 		console.log("controller init");
@@ -22,6 +22,11 @@ angular.module('webshop.controllers', [])
 		   }
     	};
     $.ajax(config);
+   }
+   $scope.goToPDP = function(url) {
+		console.log("inPDP: "+ url);
+		$window.open(url);
+
    }
 })
 
