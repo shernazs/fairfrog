@@ -7,17 +7,16 @@
 
 from scrapy.item import Item, Field
 
-url = "http://organicwear.nl/shop/"
 class OrganicWearItem(Item):
 	title = Field()
+	url = Field()
 	description = Field()
 	webshop_name = Field()
 	product_cat = Field()
 	style = Field()
-	colors = Field()
-	sizes = Field()
+	image = Field()
 	price = Field()
 	discount_price = Field()
-	url = Field()
-	images = Field()
+	sizes = Field()
+	brand = Field()
 

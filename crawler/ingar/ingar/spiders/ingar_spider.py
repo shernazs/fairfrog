@@ -20,35 +20,25 @@ class StackSpider(Spider):
             yield Request(product_link, callback=self.parse_product_details)
 
     def parse_product_details(self, response):
-        tags = response.css("div[id*=breadcrum] > a::text").extract()
-        tags = '|'.join(tags[2:])
+        tags = '|'.join(filter(lambda x: x != 'SALE', response.xpath('//*[@class="posted_in"]/a/text()').extract()))
         title = response.css("h1::text").extract()[0]
-        price = response.css("div[class*=price-block] > span[class*=woocommerce-Price-amount]::text").extract()
         brand = response.css("ul[class*=product-tabs] > li > a::text").extract()[0]
-        #TODO: We might wanna extract original prices, if price is disconted
-        if len(price) == 0:
-            price = response.css("div[class*=price-block] > ins > span[class*=woocommerce-Price-amount]::text").extract()
-            if len(price) == 0:
-                price = 0.0
-            else:
-                price = price[0]
-                price = findall(r'\d+', price)[0]
-        else:
-            price = price[0]
-            price = findall(r'\d+', price)[0]
-
-        sizes = response.css("select[id*=maat] > option::attr('value')").extract()[1:]
-        sizes = '|'.join(sizes)
-
-        img = response.css("img[class*=wp-post-image]::attr('src')").extract()[0]
-
-        product = dict()
+        sizes = '|'.join(response.xpath('//select[@id="maat"]//text()')[1:].extract())
+        img = response.xpath('//a[contains(@class, "woocommerce-main-image")]/@href').extract()[0]
+        product = IngarItem()
         product['url'] = response.url
         product['title'] = title
+        product['description'] = '\n'.join(response.xpath('//div[contains(@class, "product-shop")]/p/text()').extract()).encode('UTF-8')
         product['product_cat'] = tags
-        product['price'] = price
+        #TODO: We might wanna extract original prices, if price is disconted
+        prices = findall(r'(\d+.\d+)', '|'.join(response.xpath('//p[@class="price"]//span[contains(@class, "woocommerce-Price-amount")]/text()').extract()).encode('UTF-8'))
+        product['price'] = prices[0]
+	if len(prices) > 1:
+		product['discount_price'] = prices[1]
+	else:
+		product['discount_price'] = product['price']
         product['sizes'] = sizes
-        product['images'] = img
+        product['image'] = img
         product['brand'] = brand
-        print (product)
-        yield IngarItem(product)
+	product['webshop_name'] = "Ingar"
+        yield product

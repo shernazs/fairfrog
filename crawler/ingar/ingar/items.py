@@ -8,11 +8,8 @@ class IngarItem(Item):
     webshop_name = Field()
     product_cat = Field()
     style = Field()
-    images = Field()
-    tags = Field()
+    image = Field()
     price = Field()
     discount_price = Field()
     sizes = Field()
-    colors = Field()
     brand = Field()
-
