@@ -14,7 +14,6 @@ class OrganicWearItem(Item):
 	webshop_name = Field()
 	webshop_logo = Field()
 	product_cat = Field()
-	style = Field()
 	image = Field()
 	price = Field()
 	discount_price = Field()

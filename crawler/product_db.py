@@ -29,10 +29,10 @@ def closeDB(con):
 def createAndCheckTables(cursor):
 	#title url description webshop_name product_cat style image price discount_price sizes brand
 	cursor.execute('CREATE TABLE IF NOT EXISTS Products \
-		(id INTEGER PRIMARY KEY, Webshop VARCHAR(50), Title VARCHAR(100), Description TEXT, Url VARCHAR(2000), \
+		(Id INTEGER PRIMARY KEY, Webshop VARCHAR(50), Title VARCHAR(100), Description TEXT, Url VARCHAR(2000), \
 		Image VARCHAR(2000), Logo VARCHAR(2000), Style VARCHAR(3), Brand VARCHAR(100), Price DOUBLE, Discount_price DOUBLE,\
 		Sizes TEXT, Categories TEXT, Hashtags TEXT)')
-	cursor.execute('CREATE TABLE IF NOT EXISTS Popular_Products (id INTEGER PRIMARY KEY, Product_Id VARCHAR(5))')
+	cursor.execute('CREATE TABLE IF NOT EXISTS Popular_Products (Id INTEGER PRIMARY KEY, Product_Id VARCHAR(5))')
 
 
 def storeInDb(logger, con, cursor):

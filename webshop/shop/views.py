@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
-from shop.models import CrawledProducts
+from shop.models import Products
 import logging
 from datetime import datetime
 
@@ -18,7 +18,7 @@ def set_log():
 
 
 def index(request):
-	return HttpResponse("FairFrog says hey there world!")
+	return HttpResponse("FairFrog says: Hey there, world!")
 
 
 def get_products(request):
@@ -26,28 +26,28 @@ def get_products(request):
 	response = {'status': 0}
 	try:
 		products_list = []
-		products = CrawledProducts.objects.all()
+		products = Products.objects.all()
 		for product in products:
 			temp_product = {}
-			temp_product['id'] = product.product_id
-			temp_product['title'] = product.title
-			temp_product['webshop_name'] = product.webshop_name
-			temp_product['webshop_logo'] = product.webshop_logo
-			temp_product['url'] = product.url
-			temp_product['image'] = product.image
-			temp_product['price'] = product.price
-			temp_product['discount_price'] = product.discount_price
-			temp_product['brand'] = product.brand
-			temp_product['sizes'] = product.sizes
-			temp_product['product_cat'] = product.product_cat
-			temp_product['style'] = product.style
-			temp_product['description'] = product.description
+			temp_product['Id'] = product.Id
+			temp_product['title'] = product.Title
+			temp_product['webshop_name'] = product.Webshop
+			temp_product['webshop_logo'] = product.Logo
+			temp_product['url'] = product.Url
+			temp_product['image'] = product.Image
+			temp_product['price'] = product.Price
+			temp_product['discount_price'] = product.Discount_price
+			temp_product['brand'] = product.Brand
+			temp_product['sizes'] = product.Sizes.split('|')
+			temp_product['categories'] = product.Categories.lower().split('|')
+			temp_product['hashtags'] = product.Hashtags
+			temp_product['description'] = product.Description
 			products_list.append(temp_product)
 
 		response['products_list'] = products_list
 		response['status'] = 1
-	except:
+	except Exception as e:
 		#print("ERROR")
-		logger.error(" ", exc_info=True, extra={'request': request})
+		logger.error(e, exc_info=True, extra={'request': request})
 	return HttpResponse(json.dumps(response), content_type='application/json')
 
