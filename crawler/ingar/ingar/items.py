@@ -13,5 +13,5 @@ class IngarItem(Item):
 	price = Field()
 	discount_price = Field()
 	sizes = Field()
-	tags = Field()
+	hashtags = Field()
 	brand = Field()

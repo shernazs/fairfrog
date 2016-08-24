@@ -29,6 +29,6 @@ class OrganicWear_Spider(Spider):
 		item['price'] = product.xpath('//input[@class="cpf-product-price"]/@value').extract()[0] + '.00'
 		item['discount_price'] = item['price']
 		item['image'] = product.xpath('//div[@class="images"]/a/@href').extract()[0]
-		item['tags'] = "Free postage within Groningen, The Netherlands"
+		item['hashtags'] = "Free postage within Groningen, The Netherlands"
 		return item
 

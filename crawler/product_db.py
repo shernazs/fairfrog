@@ -31,7 +31,7 @@ def createAndCheckTables(cursor):
 	cursor.execute('CREATE TABLE IF NOT EXISTS Products \
 		(id INTEGER PRIMARY KEY, Webshop VARCHAR(50), Title VARCHAR(100), Description TEXT, Url VARCHAR(2000), \
 		Image VARCHAR(2000), Logo VARCHAR(2000), Style VARCHAR(3), Brand VARCHAR(100), Price DOUBLE, Discount_price DOUBLE,\
-		Sizes TEXT, Categories TEXT, Tags TEXT)')
+		Sizes TEXT, Categories TEXT, Hashtags TEXT)')
 	cursor.execute('CREATE TABLE IF NOT EXISTS Popular_Products (id INTEGER PRIMARY KEY, Product_Id VARCHAR(5))')
 
 
@@ -50,11 +50,11 @@ def storeInDb(logger, con, cursor):
 				item.get('title'), item.get('url'))))
 		else:
 			cursor.execute("Insert Into Products ( Webshop, Title, Description, Url, Image, Logo, Style, \
-				Brand, Price, Discount_price, Sizes, Categories, Tags) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
+				Brand, Price, Discount_price, Sizes, Categories, Hashtags) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
 				( item.get('webshop_name', ''), item.get('title', ''), item.get('description', ''), 
 				item.get('url',''), item.get('image',''), item.get('webshop_logo',''),item.get('style',''), 
 				item.get('brand',''), item.get('price',''), item.get('discount_price',''), item.get('sizes',''), 
-				item.get('product_cat',''), item.get('tags','')))
+				item.get('product_cat',''), item.get('hashtags','')))
 			logger.debug("Item stored in Database: " + '\t\t'.join((item.get('webshop_name'), 
 				item.get('title'), item.get('url'))))
 
