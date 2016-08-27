@@ -20,13 +20,19 @@ def set_log():
 def index(request):
 	return HttpResponse("FairFrog says: Hey there, world!")
 
-
 def get_products(request):
 	logger = set_log()
 	response = {'status': 0}
+        cat = request.GET.get('cat', '')
 	try:
 		products_list = []
-		products = Products.objects.all()
+
+                if cat != '':
+                    products = Products.objects.all().filter(Categories__contains=cat)
+                else:
+		    products = Products.objects.all()
+
+
 		for product in products:
 			temp_product = {}
 			temp_product['Id'] = product.Id
