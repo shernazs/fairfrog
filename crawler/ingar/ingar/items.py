@@ -2,11 +2,15 @@ from scrapy.item import Item, Field
 
 
 class IngarItem(Item):
-    title = Field()
-    url = Field()
-    img = Field()
-    tags = Field()
-    price = Field()
-    sizes = Field()
-    brand = Field()
-
+	title = Field()
+	url = Field()
+	description = Field()
+	webshop_name = Field()
+	webshop_logo = Field()
+	product_cat = Field()
+	image = Field()
+	price = Field()
+	discount_price = Field()
+	sizes = Field()
+	hashtags = Field()
+	brand = Field()

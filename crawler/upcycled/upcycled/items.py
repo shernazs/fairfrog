@@ -7,18 +7,17 @@
 
 from scrapy.item import Item, Field
 
-url = "http://upcycled.nl/"
 class UpcycledItem(Item):
-	product_title = Field()
+	title = Field()
+	url = Field()
 	description = Field()
 	webshop_name = Field()
+	webshop_logo = Field()
 	product_cat = Field()
-	product_tags = Field()
-	style = Field()
-	color = Field()
-	size = Field()
+	image = Field()
 	price = Field()
 	discount_price = Field()
-	url = Field()
-	images = Field()
+	sizes = Field()
+	hashtags = Field()
+	brand = Field()
 

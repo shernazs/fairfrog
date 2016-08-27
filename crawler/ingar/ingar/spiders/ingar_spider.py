@@ -4,52 +4,48 @@ from re import findall
 
 
 class StackSpider(Spider):
-    name = "ingar"
-    allowed_domains = ["ingar.nl"]
-    start_urls = [
-        "http://ingar.nl/shop/",
-    ]
+	name = "ingar"
+	allowed_domains = ["ingar.nl"]
+	start_urls = [
+	"http://ingar.nl/shop/",
+	]
 
-    def parse(self, response):
-        for next_page in response.css("div[class*=bottom] > div > ul > li > a[class*=page-numbers]::attr('href')"):
-            next_page = response.urljoin(next_page.extract())
-            yield Request(next_page, callback=self.parse)
 
-        for product_link in response.css("section > div > div > div > a[class*=woocommerce-LoopProduct-link]::attr('href')"):
-            product_link = response.urljoin(product_link.extract())
-            yield Request(product_link, callback=self.parse_product_details)
+	def parse(self, response):
+		for next_page in response.xpath('//a[@class="page-numbers"]/@href'):
+			next_page = response.urljoin(next_page.extract())
+			yield Request(next_page, callback=self.parse)
 
-    def parse_product_details(self, response):
+		for product_link in response.xpath('//a[@class="woocommerce-LoopProduct-link"]/@href'):
+			product_link = response.urljoin(product_link.extract())
+			yield Request(product_link, callback=self.parse_product_details)
 
-        tags = response.css("div[id*=breadcrum] > a::text").extract()
-        tags = '|'.join(tags[2:])
-        title = response.css("h1::text").extract()[0]
-        price = response.css("div[class*=price-block] > span[class*=woocommerce-Price-amount]::text").extract()
-        brand = response.css("ul[class*=product-tabs] > li > a::text").extract()[0]
-        #TODO: We might wanna extract original prices, if price is disconted
-        if len(price) == 0:
-            price = response.css("div[class*=price-block] > ins > span[class*=woocommerce-Price-amount]::text").extract()
-            if len(price) == 0:
-                price = 0.0
-            else:
-                price = price[0]
-                price = findall(r'\d+', price)[0]
-        else:
-            price = price[0]
-            price = findall(r'\d+', price)[0]
 
-        sizes = response.css("select[id*=maat] > option::attr('value')").extract()[1:]
-        sizes = '|'.join(sizes)
+	def parse_product_details(self, response):
+		categories = '|'.join(filter(lambda x: x != 'SALE', response.xpath('//*[@class="posted_in"]/a/text()').extract()))
+		title = response.css("h1::text").extract()[0]
+		brand = response.css("ul[class*=product-tabs] > li > a::text").extract()[0]
+		sizes = '|'.join(response.xpath('//select[@id="maat"]//text()')[1:].extract())
+		img = response.xpath('//a[contains(@class, "woocommerce-main-image")]/@href').extract()[0]
+		product = IngarItem()
+		product['url'] = response.url
+		product['title'] = title
+		product['description'] = '\n'.join(response.xpath('//div[contains(@class, "product-shop")]/p/text()').extract()).encode('UTF-8')
+		product['product_cat'] = categories
+		hashtags = response.xpath('//span[contains(@class,"label-icon")]/text()').extract()
+		if hashtags:
+			product['hashtags'] = hashtags[0]
 
-        img = response.css("img[class*=wp-post-image]::attr('src')").extract()[0]
-
-        product = dict()
-        product['url'] = response.url
-        product['title'] = title
-        product['tags'] = tags
-        product['price'] = price
-        product['sizes'] = sizes
-        product['img'] = img
-        product['brand'] = brand
-        print (product)
-        yield IngarItem(product)
+		#TODO: We might wanna extract original prices, if price is disconted
+		prices = findall(r'(\d+.\d+)', '|'.join(response.xpath('//p[@class="price"]//span[contains(@class, "woocommerce-Price-amount")]/text()').extract()).encode('UTF-8'))
+		product['price'] = prices[0]
+		if len(prices) > 1:
+			product['discount_price'] = prices[1]
+		else:
+			product['discount_price'] = product['price']
+		product['sizes'] = sizes
+		product['image'] = img
+		product['brand'] = brand
+		product['webshop_name'] = "Ingar"
+		product['webshop_logo'] = "http://ingar.nl/wp-content/uploads/shop/Ingar-logo2.png"
+		yield product
