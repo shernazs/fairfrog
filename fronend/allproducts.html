@@ -84,7 +84,7 @@
         text-align: center;
       }
       .items{
-      	width: 276px;
+      	width: 326px;
 	    border: 1px solid #DEEAEE;
 	    border-radius: 4px;
 	    -moz-border-radius: 4px;
@@ -94,17 +94,19 @@
 	    overflow: hidden;
 	    background: #fff;
         padding-bottom: 50px;
-        max-height:370px;
+        min-height:350px;
+        max-height:430px;
       }
       .items:hover{
       	border: 1px solid #00B2EE;
       }
-      img.product-image{
-      	width: 276px;
-      	height:276px;
-      }
+      img.product-image {
+        width: 200px;
+        height: 250px;
+        margin-top: 5px;
+        }
       .product-title{
-      	text-align: center;
+      	 margin-left: 15px;
       	/*font-weight: bold;*/
     	margin-bottom: 10px;
     	/*color:#659D32;*/
@@ -119,6 +121,7 @@
 	    font-size: 18px;
 	    font-weight: bold;
 	    color:#659D32;
+        float:left;
       }
       .sidebar{
       	height:100%;
@@ -140,79 +143,88 @@
     width: 80%;
 }
 
-.corner-link {
-  -webkit-transform: rotate(-45deg);  
-     -moz-transform: rotate(-45deg); 
-      -ms-transform: rotate(-45deg); 
-       -o-transform: rotate(-45deg); 
-          transform: rotate(-45deg);
-  -webkit-transform-origin: 0 0;
-     -moz-transform-origin: 0 0;
-      -ms-transform-origin: 0 0;
-       -o-transform-origin: 0 0;
-          transform-origin: 0 0;
-    right: 0;
-    top: 0;
-    display: block;
-    height: 150px;
-    position: absolute;
-    width: 100px;
-    z-index: 3;
-}
-.corner-text-wrapper {
-  -webkit-transform: rotate(45deg);  
-     -moz-transform: rotate(45deg);  
-      -ms-transform: rotate(45deg);  
-       -o-transform: rotate(45deg);  
-          transform: rotate(45deg);
-    /*clip: rect(0px, 141.421px, 70.7107px, 0px);*/
-    height: 141.421px;
-    position: absolute;
-    right: -20.7107px;
-    top: -20.7107px;
-    width: 141.421px;
-    z-index: 1;
-}
-.corner-text {
-  color: white;
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    left: 31px;
-    top: 17px;
-    /* background-color: #f1f1f1; */
-    /* background-color: transparent; */
-    background: rgba(204,255,204,0.3);
-    display: block;
-    height: 80px;
-    position: absolute;
-    width: 80px;
-    z-index: 2;
-    /* opacity: 0.5; */
-    border-bottom-left-radius: 100%;
-}
-.corner-text span {
-  position: relative;
-  font-family: "HelveticaNeue-CondensedBold", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 700;
-  left: 10px;
-  display: block;
-  text-align: center;
-      font-size: 18px;
-    font-weight: bold;
-    color: #000000;
-    margin-top: 22px;
-    /*opacity:1;*/
 
+.container-fluid.product-container {
+    margin-left: 350px;
 }
-      
+.client-logo{
+    width:80px;
+    float: right;
+}
+
+.limittxt {
+    z-index: 1;
+    position: absolute;
+    color: #222;
+    font-size: 11px;
+    padding: 5px 16px 5px 2px;
+    height: 24px;
+    /*margin-top: 4px;*/
+    margin-left: 10px;
+    background: #FAE035 none repeat scroll 0% 0%;
+}
+.limittxt::after {
+    width: 16px;
+    content: " ";
+    background-image: url("http://i.imgur.com/qIt30oJ.png");
+    position: absolute;
+    right: -10px;
+    top: 0px;
+    z-index: 0;
+    height: 24px;
+    background-size: 16px 24px;
+}
+.block {
+    display: block;
+}
+.fltlft {
+    float: left !important;
+}
+.align-left {
+    text-align: left;
+}
+/*banners style for product block*/
+
+.banners:hover {
+    /*border: 1px solid #fe5000;*/
+    border-bottom: 55px solid #fe5000;
+}
+.banners, .banners1 {
+    border: 1px solid #cacaca;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    /*height: 280px;*/
+    text-align: center;
+    /*padding: 0 10px;*/
+    min-width:330px;
+    max-width:330px;
+    -moz-transition: all 0.2s ease-in 0s;
+    -webkit-transition: all 0.2s ease-in 0s;
+    transition: all 0.2s ease-in 0s;
+}
+.banners img, .banners1 img {
+    margin-top: 35px;
+    -webkit-transition: all 0.2s ease-in 0s;
+    -moz-transition: all 0.2s ease-in 0s;
+    transition: all 0.2s ease-in 0s;
+}
+img {
+    vertical-align: middle;
+}
+.banners:hover > img {
+    transform: scale(0.8,0.8);
+    -webkit-transform: scale(0.8,0.8);
+    margin-top: 20px;
+}
+
+/* banners block ends here */
+
     
     </style>
 </head>
 <body ng-app="webshop" ng-controller="webshop-controller" data-ng-init="initFunction()">
-    <div id="header" class="container">
+    <div id="header">
       <div class="row">
         <div class="span2">
           <div class="site-logo">
@@ -238,40 +250,31 @@
     </div>   
     
     <div class="container">
-      <div class="row">
-        <div class="sidebar-height">
-          <div class="well sidebar-nav sidebar">
-            <ul class="nav nav-list">
-              <li><a href="allproducts.html"><button class="btn btn-success btn-lg btn-block" type="submit">All Products</button></a></li>
-              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
-              <li><a href="#"><button class="btn btn-success btn-lg btn-block" type="submit">Button</button></a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        
-
-        <div class="span9">
+      <div class="row-fluid">
           <div class="row-fluid">
 	          <div ng-repeat="product in allProducts" ng-switch on="$index % 3">
 	          	<div ng-switch-when="0">
-	          		<div class="span4" ng-repeat="i in [0,1,2]">
-	          			<div class="items" ng-click="goToPDP(allProducts[$parent.$index+i].url)">
-		          			<div style="position:relative;"><img class="product-image" src={{allProducts[$parent.$index+i].img}}>
-                                <span class="corner-link"></span>
-                                <div class="corner-text-wrapper">
-                                    <div class="corner-text">
-                                        <span>&euro;{{allProducts[$parent.$index+ i].price}}</span>
-                                    </div>
-                                </div> 
-                            </div>
-		          		
-		          			<div class="product-title">{{allProducts[$parent.$index+ i].title}}</div>
-		          			<!-- <div class="product-price">&euro;{{allProducts[$parent.$index+ i].price}}</div> -->
+                <div class="col-md-12">
+	          		<div class="col-md-4" ng-repeat="i in [0,1,2]">
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                            
+                            <span class="limittxt block align-left fltlft"># Free Shipping </span>
+    	          			  <div class="items" ng-click="goToPDP(allProducts[$parent.$index+i].url)">
+    		          			
+                                <div style="position:relative;">
+                                <div class="banners">
+                                <img class="product-image hidden-sm" src={{allProducts[$parent.$index+i].img}}>
+                                </div></div>
+                                <div class="product-title">{{allProducts[$parent.$index+ i].title}}</div>
+                                <div class="col-md-6 pull-left">
+                                    <div class="product-price">&euro;{{allProducts[$parent.$index+ i].price}}</div>
+                                </div>
+                                <div class="col-md-6 pull-right">  
+                                <a href="http://ingar.nl"><img class="client-logo" src="http://ingar.nl/wp-content/uploads/shop/Ingar-logo2.png" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
+                                </div>
+                            </div> 
+                        </div>
 		          		</div>	
 	          		</div>
 	          		</div>

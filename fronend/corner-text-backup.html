@@ -1,0 +1,75 @@
+<!-- <span class="corner-link"></span>
+                                <div class="corner-text-wrapper">
+                                    <div class="corner-text">
+                                        <span>&euro;{{allProducts[$parent.$index+ i].price}}</span>
+                                    </div>
+                                </div>  -->
+
+
+                                .corner-link {
+  -webkit-transform: rotate(-45deg);  
+     -moz-transform: rotate(-45deg); 
+      -ms-transform: rotate(-45deg); 
+       -o-transform: rotate(-45deg); 
+          transform: rotate(-45deg);
+  -webkit-transform-origin: 0 0;
+     -moz-transform-origin: 0 0;
+      -ms-transform-origin: 0 0;
+       -o-transform-origin: 0 0;
+          transform-origin: 0 0;
+    right: 0;
+    top: 0;
+    display: block;
+    height: 150px;
+    position: absolute;
+    width: 100px;
+    z-index: 3;
+}
+.corner-text-wrapper {
+  -webkit-transform: rotate(45deg);  
+     -moz-transform: rotate(45deg);  
+      -ms-transform: rotate(45deg);  
+       -o-transform: rotate(45deg);  
+          transform: rotate(45deg);
+    /*clip: rect(0px, 141.421px, 70.7107px, 0px);*/
+    height: 141.421px;
+    position: absolute;
+    right: -20.7107px;
+    top: -20.7107px;
+    width: 141.421px;
+    z-index: 1;
+}
+.corner-text {
+  color: white;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    left: 31px;
+    top: 17px;
+    /* background-color: #f1f1f1; */
+    /* background-color: transparent; */
+    background: rgba(204,255,204,0.3);
+    display: block;
+    height: 80px;
+    position: absolute;
+    width: 80px;
+    z-index: 2;
+    /* opacity: 0.5; */
+    border-bottom-left-radius: 100%;
+}
+.corner-text span {
+  position: relative;
+  font-family: "HelveticaNeue-CondensedBold", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 700;
+  left: 10px;
+  display: block;
+  text-align: center;
+      font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    margin-top: 22px;
+    /*opacity:1;*/
+
+}
