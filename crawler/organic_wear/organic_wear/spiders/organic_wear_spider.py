@@ -19,7 +19,7 @@ class OrganicWear_Spider(Spider):
 		item = OrganicWearItem()
 		item['title'] = product.xpath('//h1[@itemprop="name"]/text()').extract()[0]
 		item['webshop_name'] = "Organic Wear"
-		item['webshop_logo'] = "https://pbs.twimg.com/profile_images/764112760124874752/-76Ww5kT_400x400.jpg"
+		item['webshop_logo'] = "http://fairfrog.nl/wp-content/uploads/2016/08/OrganicWearLogo.png"
 		item['brand'] = "Organic Wear"
 		item['url'] = response.url
 		item['description'] = '\n'.join(product.xpath('//div[@itemprop="description"]/p/text()').extract()[:-1]).encode('UTF-8')

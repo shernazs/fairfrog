@@ -20,18 +20,17 @@ def set_log():
 def index(request):
 	return HttpResponse("FairFrog says: Hey there, world!")
 
+
 def get_products(request):
 	logger = set_log()
 	response = {'status': 0}
-        cat = request.GET.get('cat', '')
+	cat = request.GET.get('cat', '')
 	try:
 		products_list = []
-
-                if cat != '':
-                    products = Products.objects.all().filter(Categories__contains=cat)
-                else:
-		    products = Products.objects.all()
-
+		if cat != '':
+			products = Products.objects.all().filter(Categories__contains=cat.lower())
+		else:
+			products = Products.objects.all()
 
 		for product in products:
 			temp_product = {}
@@ -46,6 +45,8 @@ def get_products(request):
 			temp_product['brand'] = product.Brand
 			temp_product['sizes'] = product.Sizes.split('|')
 			temp_product['categories'] = product.Categories.lower().split('|')
+			if temp_product['discount_price'] < temp_product['price'] and 'sale' not in temp_product['categories']:
+			    temp_product['categories'].append('sale')
 			temp_product['hashtags'] = product.Hashtags
 			temp_product['description'] = product.Description
 			products_list.append(temp_product)
@@ -53,7 +54,6 @@ def get_products(request):
 		response['products_list'] = products_list
 		response['status'] = 1
 	except Exception as e:
-		#print("ERROR")
 		logger.error(e, exc_info=True, extra={'request': request})
 	return HttpResponse(json.dumps(response), content_type='application/json')
 

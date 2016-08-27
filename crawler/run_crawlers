@@ -1,4 +1,4 @@
 #!/bin/bash
 find . -name "products.json" | xargs rm
 ls -1d */ | cut -d/ -f1 | while read shop; do cd $shop; scrapy crawl $shop -o products.json ;cd -; done
-./product_db.py
+python product_db.py
