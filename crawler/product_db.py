@@ -32,7 +32,8 @@ def createAndCheckTables(cursor):
 	(Id INTEGER PRIMARY KEY, Webshop VARCHAR(50), Title VARCHAR(100), Description TEXT, Url VARCHAR(2000), \
 	Image VARCHAR(2000), Logo VARCHAR(2000), Style VARCHAR(3), Brand VARCHAR(100), Price DOUBLE, Discount_price DOUBLE,\
 	Sizes TEXT, Categories TEXT, Hashtags TEXT)')
-	cursor.execute('CREATE TABLE IF NOT EXISTS Popular_Products (Id INTEGER PRIMARY KEY, Product_Id VARCHAR(5))')
+	cursor.execute('CREATE TABLE IF NOT EXISTS Popular_Products (Id INTEGER PRIMARY KEY, Product_Id VARCHAR(5), FOREIGN KEY(Product_Id) REFERENCES Products(Id))')
+	cursor.execute('CREATE TABLE IF NOT EXISTS Advertorial_Products (Id INTEGER PRIMARY KEY, Product_Id VARCHAR(5), FOREIGN KEY(Product_Id) REFERENCES Products(Id))')
 
 
 def storeInDb(logger, con, cursor):
@@ -53,10 +54,16 @@ def storeInDb(logger, con, cursor):
 			product[0], product[1], product[2])
 
 	for item in data:
+		if item.get('discount_price') < item.get('price') and 'sale' not in item.get('product_cat'):
+		    item['product_cat'] += '|sale'
+		if 'collectie' in item.get('product_cat'):
+		    item['product_cat'] = item['product_cat'].replace(' collectie', '')
+
 		if (item.get('webshop_name'), item.get('title'), item.get('url')) in data_DB: 
-			cursor.execute('UPDATE Products SET Price = ?, Discount_price = ? WHERE Webshop = ? AND Title = ? AND Url = ?', 
-				item.get('price',''), item.get('discount_price',''), item.get('webshop_name', ''), 
-				item.get('title', ''), item.get('url',''))
+			cursor.execute('UPDATE Products SET Price = ?, Discount_price = ?, Categories = ?, Hashtags = ? \
+				WHERE Webshop = ? AND Title = ? AND Url = ?', 
+				item.get('price',''), item.get('discount_price',''), item.get('product_cat', ''), item.get('hashtags',''), 
+				item.get('webshop_name', ''), item.get('title', ''), item.get('url',''))
 			logger.info("Product price and discount price update for item already in Database: " + 
 				'\t\t'.join((item.get('webshop_name'), item.get('title'), item.get('url'))))
 		else:

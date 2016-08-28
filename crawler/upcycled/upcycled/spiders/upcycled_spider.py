@@ -21,7 +21,7 @@ class Upcycled_Spider(Spider):
 		item['brand'] = "Upcycled"
 		item['url'] = response.url
 		item['description'] = '\n'.join(product.xpath('//div[@data-tab-content="description"]//p/text()').extract()).encode('UTF-8')
-		item['product_cat'] = '|'.join(["Accessories", "Dames", "Tassen"])
+		item['product_cat'] = "Tassen"
 		item['sizes'] = ' x '.join(findall(r'\d+ cm', ''.join(product.xpath('//table[@class="article-specs"]//td/text()').extract())))
 		item['price'] = findall(r'\d+', ''.join(filter(lambda x: search(r'\d+', x), product.xpath('//div[@class="right"]//*[@class="pricetag"]//text()').extract())))[0]  + '.00'
 		item['discount_price'] = item['price']
