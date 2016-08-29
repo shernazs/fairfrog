@@ -4,6 +4,7 @@ import json
 from shop.models import Products, Popular_Products, Advertorial_Products
 import logging
 from datetime import datetime
+from random import shuffle
 
 
 def set_log():
@@ -93,7 +94,7 @@ def get_products(request):
 		products = Products.objects.all().filter(Categories__contains=cat.lower()).filter(Categories__contains=subcat.lower())
 	else:
 		products = Products.objects.all()
-
+    
 	try:
 		for product in products:
 			temp_product = {}

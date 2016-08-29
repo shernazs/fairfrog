@@ -49,21 +49,23 @@ def storeInDb(logger, con, cursor):
 	data_DB = result & identifier_data
 	remove_DB = result - identifier_data
 
+	"""
 	for product in remove_DB:
 		cursor.execute('DELETE FROM Products WHERE Webshop = ? AND Title = ? AND Url = ?',
-			product[0], product[1], product[2])
+			(product[0], product[1], product[2]))
+	"""
 
 	for item in data:
 		if item.get('discount_price') < item.get('price') and 'sale' not in item.get('product_cat'):
 		    item['product_cat'] += '|sale'
-		if 'collectie' in item.get('product_cat'):
+		if ' collectie' in item.get('product_cat'):
 		    item['product_cat'] = item['product_cat'].replace(' collectie', '')
 
 		if (item.get('webshop_name'), item.get('title'), item.get('url')) in data_DB: 
 			cursor.execute('UPDATE Products SET Price = ?, Discount_price = ?, Categories = ?, Hashtags = ? \
 				WHERE Webshop = ? AND Title = ? AND Url = ?', 
-				item.get('price',''), item.get('discount_price',''), item.get('product_cat', ''), item.get('hashtags',''), 
-				item.get('webshop_name', ''), item.get('title', ''), item.get('url',''))
+				(item.get('price',''), item.get('discount_price',''), item.get('product_cat', ''), item.get('hashtags',''), 
+				item.get('webshop_name', ''), item.get('title', ''), item.get('url','')))
 			logger.info("Product price and discount price update for item already in Database: " + 
 				'\t\t'.join((item.get('webshop_name'), item.get('title'), item.get('url'))))
 		else:
@@ -83,13 +85,13 @@ def main():
 	logger = set_log()
 	logger.info("Setting up Database connection...")
 	connection, cursor = setupDBCon()
-	try:
-		createAndCheckTables(cursor)
-		storeInDb(logger, connection, cursor)
-	except Exception as e:
-		logger.error(e)
-	finally:
-		closeDB(connection)
+	#try:
+	createAndCheckTables(cursor)
+	storeInDb(logger, connection, cursor)
+	#except Exception as e:
+	#logger.error(e)
+	#finally:
+	closeDB(connection)
 
 
 if __name__ == "__main__":
