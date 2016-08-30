@@ -1,268 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script-->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
     <link rel='stylesheet prefetch' href='http:////netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
     <link rel="stylesheet" href="css/style.css">
- 
-<!-- Angular -->
+    <!-- Angular -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular-route.js"></script>
     <script src="static/js/po/app.js" type="text/javascript"></script>
     <script src="static/js/po/controller.js" type="text/javascript"></script>
-<!-- Angular End-->
-
-<script>
+    <!-- Angular End-->
+    <script>
     if (window.addEventListener) window.addEventListener('DOMMouseScroll', wheel, false);
-window.onmousewheel = document.onmousewheel = wheel;
+    window.onmousewheel = document.onmousewheel = wheel;
 
-function wheel(event) {
-    var delta = 0;
-    if (event.wheelDelta) delta = event.wheelDelta / 120;
-    else if (event.detail) delta = -event.detail / 3;
+    function wheel(event) {
+        var delta = 0;
+        if (event.wheelDelta) delta = event.wheelDelta / 120;
+        else if (event.detail) delta = -event.detail / 3;
 
-    handle(delta);
-    if (event.preventDefault) event.preventDefault();
-    event.returnValue = false;
-}
+        handle(delta);
+        if (event.preventDefault) event.preventDefault();
+        event.returnValue = false;
+    }
 
-function handle(delta) {
-    var time = 700;
-  var distance = $(window).height() * 0.75;
-    
-    $('html, body').stop().animate({
-        scrollTop: $(window).scrollTop() - (distance * delta)
-    }, time );
-}
+    function handle(delta) {
+        var time = 700;
+        var distance = $(window).height() * 0.75;
+
+        $('html, body').stop().animate({
+            scrollTop: $(window).scrollTop() - (distance * delta)
+        }, time);
+    }
     </script>
 </head>
+
 <body ng-app="webshop" ng-controller="webshop-controller" data-ng-init="initFunction()">
     <div id="header">
-      <!--header from wordpress-->
-    </div>   
+        <!--header from wordpress-->
+    </div>
     <!--menu code-->
-   <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <!-- <a class="navbar-brand" href="#">Brand Logo</a> -->
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="menu-li"><a href="#">Alle Producten</a></li>
-          <li class="dropdown menu-li">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dames<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" ng-click="getCategories('Cardigans')">Cardigans & Vesten</a></li>
-              <li><a href="#" ng-click="getCategories('Jurken')">Jurken</a></li>
-              <li><a href="#" ng-click="getCategories('Jeans')">Jeans & Broeken</a></li>
-              <li><a href="#" ng-click="getCategories('Rokken')">Rokken</a></li>
-              <li><a href="#" ng-click="getCategories('Tops')">Tops</a></li>
-              <li><a href="#" ng-click="getCategories('t-shirt')">T-shirts</a></li>
-              <li><a href="#" ng-click="getCategories('tank-top')">Tanktops</a></li>
-              <li><a href="#" ng-click="getCategories('sweater')">Sweaters</a></li>
-            </ul>
-          </li>
-          <li class="dropdown menu-li">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accesories<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" ng-click="getCategories('Armbanden')">Armbanden</a></li>
-              <li><a href="#" ng-click="getCategories('Kettingen')">Kettingen </a></li>
-              <li><a href="#" ng-click="getCategories('Oorbellen')">Oorbellen</a></li>
-              <li><a href="#" ng-click="getCategories('Sjaals en Stola's')">Sjaals & Stola's</a></li>
-              <li><a href="#" ng-click="getCategories('Portemonnees')">Portemonnees</a></li>
-            </ul>
-          </li>
-          <li class="dropdown menu-li">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Heren<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" ng-click="getCategories('Tops')">Tops</a></li>
-              <li><a href="#" ng-click="getCategories('T-shirts')">T-shirts </a></li>
-              <li><a href="#" ng-click="getCategories('Tanktops')">Tanktops</a></li>
-              <li><a href="#" ng-click="getCategories('Sweaters')">Sweaters</a></li>
-            </ul>
-          </li>
-          <li class="menu-li"><a href="#" ng-click="getCategories('Kinderen')">Kinderen</a></li>
-          <li class="menu-li"><a href="#" ng-click="getCategories('Tassen')">Tassen</a></li>
-           <li class="dropdown menu-li">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wonen<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" ng-click="getCategories('Feestartikelen')">Feestartikelen</a></li>
-              <li><a href="#" ng-click="getCategories('Home Decoratie')">Home Decoratie</a></li>
-              <li><a href="#" ng-click="getCategories('Kantoor')">Kantoor</a></li>
-              <li><a href="#" ng-click="getCategories('Keuken')">Keuken</a></li>
-              <li><a href="#" ng-click="getCategories('Manden')">Manden</a></li>
-              <li><a href="#" ng-click="getCategories('Cadeaubonnen')">Cadeaubonnen</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-    <!--menu code ends-->   
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- <a class="navbar-brand" href="#">Brand Logo</a> -->
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="menu-li"><a href="#">Alle Producten</a></li>
+                    <li class="dropdown menu-li">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dames<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="getCategories('Cardigans')">Cardigans & Vesten</a></li>
+                            <li><a href="#" ng-click="getCategories('Jurken')">Jurken</a></li>
+                            <li><a href="#" ng-click="getCategories('Jeans')">Jeans & Broeken</a></li>
+                            <li><a href="#" ng-click="getCategories('Rokken')">Rokken</a></li>
+                            <li><a href="#" ng-click="getCategories('Tops')">Tops</a></li>
+                            <li><a href="#" ng-click="getCategories('t-shirt')">T-shirts</a></li>
+                            <li><a href="#" ng-click="getCategories('tank-top')">Tanktops</a></li>
+                            <li><a href="#" ng-click="getCategories('sweater')">Sweaters</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown menu-li">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accesories<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="getCategories('Armbanden')">Armbanden</a></li>
+                            <li><a href="#" ng-click="getCategories('Kettingen')">Kettingen </a></li>
+                            <li><a href="#" ng-click="getCategories('Oorbellen')">Oorbellen</a></li>
+                            <li><a href="#" ng-click="getCategories('Sjaals en Stolas')">Sjaals & Stola's</a></li>
+                            <li><a href="#" ng-click="getCategories('Portemonnees')">Portemonnees</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown menu-li">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Heren<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="getCategories('Tops')">Tops</a></li>
+                            <li><a href="#" ng-click="getCategories('T-shirts')">T-shirts </a></li>
+                            <li><a href="#" ng-click="getCategories('Tanktops')">Tanktops</a></li>
+                            <li><a href="#" ng-click="getCategories('Sweaters')">Sweaters</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-li"><a href="#" ng-click="getCategories('Kinderen')">Kinderen</a></li>
+                    <li class="menu-li"><a href="#" ng-click="getCategories('Tassen')">Tassen</a></li>
+                    <li class="dropdown menu-li">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wonen<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="getCategories('Feestartikelen')">Feestartikelen</a></li>
+                            <li><a href="#" ng-click="getCategories('Home Decoratie')">Home Decoratie</a></li>
+                            <li><a href="#" ng-click="getCategories('Kantoor')">Kantoor</a></li>
+                            <li><a href="#" ng-click="getCategories('Keuken')">Keuken</a></li>
+                            <li><a href="#" ng-click="getCategories('Manden')">Manden</a></li>
+                            <li><a href="#" ng-click="getCategories('Cadeaubonnen')">Cadeaubonnen</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!--menu code ends-->
     <div class="container-fluid bg-image">
-      <div class="row-fluid">
-        <div class="parallax"></div>
-      </div>
+        <div class="row-fluid">
+            <div class="parallax"></div>
+        </div>
     </div>
     <div class="container ad-block">
-      <div class="row-fluid ad-block-header">
-        <div class="col-md-12">
-          <div class="col-md-3">
-            <h3>Advetorial Products</h3>
-          </div>
-          <div class="col-md-offset-7 col-md-2">
-            <button type="button" class="btn btn-success ad-block-button">View All Products</button>
-          </div>
+        <div class="row-fluid ad-block-header">
+            <div class="col-md-12">
+                <div class="col-md-3">
+                    <h3>Advertorial Products</h3>
+                </div>
+                <div class="col-md-offset-7 col-md-2">
+                    <button type="button" class="btn btn-success ad-block-button">View All Products</button>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="row-fluid ad-block-content">
-        <div class="col-md-12">
-          <div class="col-md-4">
-             <img width="300" height="300" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
-          <div class="col-md-4">
-            <img width="300" height="300" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
-          <div class="col-md-4">
-             <img width="300" height="300" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
+        <div class="row-fluid ad-block-content">
+            <div class="row-fluid">
+                <div ng-repeat="product in advertorialProducts" ng-switch on="$index % 3">
+                    <div ng-switch-when="0">
+                        <div class="col-md-12">
+                            <div class="col-md-4" ng-repeat="i in [0,1,2]" ng-init="item=advertorialProducts[$parent.$index+ i]">
+                                <div class="row-fluid" ng-if="item">
+                                    <div class="col-md-12">
+                                        <div ng-if="item.hashtags">
+                                            <span class="limittxt block align-left fltlft">{{item.hashtags}}</span>
+                                        </div>
+                                        <div class="items" ng-click="goToPDP(item.url)">
+                                            <div style="position:relative;">
+                                                <div class="banners">
+                                                    <img class="product-image hidden-sm" src={{item.image}}>
+                                                </div>
+                                                <div class="product-sizes" style="display:none;" showonhoverparent>
+                                                    <ul>
+                                                        <div class="display-size" ng-repeat="size in item.sizes">
+                                                            <li>{{size}}</li>
+                                                        </div>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="product-title">{{item.title}}</div>
+                                            <div class="col-md-6 pull-left">
+                                                <div class="product-price">&euro;{{item.price}}</div>
+                                            </div>
+                                            <div class="col-md-6 pull-right">
+                                                <a href="http://ingar.nl"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="row-fluid ad-block-content">
-        <div class="col-md-12">
-          <div class="col-md-4">
-             <img width="300" height="300" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
-          <div class="col-md-4">
-            <img width="300" height="300" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
-          <div class="col-md-4">
-             <img width="300" height="300" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
         </div>
-      </div>
-    </div>
-    <div class="container featured-block">
-      <div class="row-fluid ad-block-header">
-        <div class="col-md-12">
-          <div class="col-md-3">
-            <h3>Featured Products</h3>
-          </div>
+        <div class="container featured-block">
+            <div class="row-fluid ad-block-header">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <h3>Featured Products</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid featured-block-content">
+            <div class="row-fluid">
+                <div ng-repeat="product in popularProducts" ng-switch on="$index % 4">
+                    <div ng-switch-when="0">
+                        <div class="col-md-12">
+                            <div class="col-md-3" ng-repeat="i in [0,1,2,3]" ng-init="item=popularProducts[$parent.$index+ i]">
+                                <div class="row-fluid" ng-if="item">
+                                    <div class="col-md-12">
+                                        <div ng-if="item.hashtags">
+                                            <span class="limittxt block align-left fltlft">{{item.hashtags}}</span>
+                                        </div>
+                                        <div class="popular-product-items" ng-click="goToPDP(item.url)">
+                                            <div style="position:relative;">
+                                              <div class="popular-product-img-container">
+                                                    <img class="popular-product-image hidden-sm" src={{item.image}}>
+                                              </div>     
+                                                <div class="product-sizes" style="display:none;" showonhoverparent>
+                                                    <ul>
+                                                        <div class="display-size" ng-repeat="size in item.sizes">
+                                                            <li>{{size}}</li>
+                                                        </div>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="product-title">{{item.title}}</div>
+                                            <div class="col-md-6 pull-left">
+                                                <div class="product-price">&euro;{{item.price}}</div>
+                                            </div>
+                                            <div class="col-md-6 pull-right">
+                                                <a href="http://ingar.nl"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>  
-      <div class="row-fluid featured-block-content">
-        <div class="col-md-12">
-          <div class="col-md-3">
-             <img width="150" height="150" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
-          <div class="col-md-3">
-            <img width="150" height="150" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
-          <div class="col-md-3">
-             <img width="150" height="150" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
-          <div class="col-md-3">
-             <img width="150" height="150" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
+        <div class="container footer-block">
+            <div class="row-fluid">
+                <div class="span3 pull-right">
+                    <ul>
+                        <li><a href=""><u>Over ons</u></a></li>
+                        <li><a href=""><u>Eerlijk en duurzaam</u></a></li>
+                        <li><a href=""><u>Blog</u></a></li>
+                        <li><a href=""><u>Nieuwsbrief</u></a></li>
+                    </ul>
+                </div>
+                <div class="span3 pull-right">
+                    <ul>
+                        <li><a href=""><u>Privacy- en Cookiebeleid</u></a></li>
+                        <li><a href=""><u>Algemene Voorwaarden</u></a></li>
+                    </ul>
+                </div>
+                <div class="span2 pull-right">
+                    <ul>
+                        <li><a href=""><u>Partner worden</u></a></li>
+                        <li><a href=""><u>Contact</u></a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="row-fluid featured-block-content">
-        <div class="col-md-12">
-          <div class="col-md-3">
-             <img width="150" height="150" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
-          <div class="col-md-3">
-            <img width="150" height="150" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
-          <div class="col-md-3">
-             <img width="150" height="150" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
-          <div class="col-md-3">
-             <img width="150" height="150" src="http://ingar.nl/wp-content/uploads/2016/07/INGAR.nl-Lanius-donkerzalm-jurk-e1469437172570-200x300.jpg" alt="Poncho gemaakt door de Chileense inheemse bevolking">
-            <div class="product-name">Lana Vivienne jurk</div>
-            <div class="product-brand">Lanius</div>
-            <div class="product-price">12.3</div>
-          </div>
-        </div>
-      </div>
-    </div>  
-    <div class="container footer-block">
-      <div class="row-fluid">
-        <div class="span3 pull-right">
-          <ul>
-            <li><a href=""><u>Over ons</u></a></li>
-            <li><a href=""><u>Eerlijk en duurzaam</u></a></li>
-            <li><a href=""><u>Blog</u></a></li>
-            <li><a href=""><u>Nieuwsbrief</u></a></li>
-          </ul>
-        </div>
-        <div class="span3 pull-right">
-          <ul>
-            <li><a href=""><u>Privacy- en Cookiebeleid</u></a></li>
-            <li><a href=""><u>Algemene Voorwaarden</u></a></li>
-          </ul>
-        </div>
-        <div class="span2 pull-right">
-          <ul>
-            <li><a href=""><u>Partner worden</u></a></li>
-            <li><a href=""><u>Contact</u></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>  
-  </body>
+</body>
+
 </html>

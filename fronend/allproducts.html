@@ -1,138 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script-->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
     <link rel='stylesheet prefetch' href='http:////netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
     <link rel="stylesheet" href="css/style.css">
-<!-- Angular -->
+    <!-- Angular -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular-route.js"></script>
     <script src="static/js/po/app.js" type="text/javascript"></script>
     <script src="static/js/po/controller.js" type="text/javascript"></script>
-<!-- Angular End-->
+    <!-- Angular End-->
     <title>fairfrog</title>
 </head>
+
 <body ng-app="webshop" ng-controller="webshop-controller" data-ng-init="initFunction()">
     <div id="header">
-      <!-- header from wordpress--> 
-    </div> 
+        <!-- header from wordpress-->
+    </div>
     <!--menu code-->
-   <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <!-- <a class="navbar-brand" href="#">Brand Logo</a> -->
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="#">Alle Producten</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dames<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" ng-click="getCategories('Cardigans')">Cardigans & Vesten</a></li>
-              <li><a href="#" ng-click="getCategories('Jurken')">Jurken</a></li>
-              <li><a href="#" ng-click="getCategories('Jeans')">Jeans & Broeken</a></li>
-              <li><a href="#" ng-click="getCategories('Rokken')">Rokken</a></li>
-              <li><a href="#" ng-click="getCategories('Tops')">Tops</a></li>
-              <li><a href="#" ng-click="getCategories('t-shirt')">T-shirts</a></li>
-              <li><a href="#" ng-click="getCategories('tank-top')">Tanktops</a></li>
-              <li><a href="#" ng-click="getCategories('sweater')">Sweaters</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accesories<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" ng-click="getCategories('Armbanden')">Armbanden</a></li>
-              <li><a href="#" ng-click="getCategories('Kettingen')">Kettingen </a></li>
-              <li><a href="#" ng-click="getCategories('Oorbellen')">Oorbellen</a></li>
-              <li><a href="#" ng-click="getCategories('Sjaals en Stola's')">Sjaals & Stola's</a></li>
-              <li><a href="#" ng-click="getCategories('Portemonnees')">Portemonnees</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Heren<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" ng-click="getCategories('Tops')">Tops</a></li>
-              <li><a href="#" ng-click="getCategories('t-shirt')">T-shirts </a></li>
-              <li><a href="#" ng-click="getCategories('tank-top')">Tanktops</a></li>
-              <li><a href="#" ng-click="getCategories('Sweater')">Sweaters</a></li>
-            </ul>
-          </li>
-          <li><a href="#" ng-click="getCategories('Kind')">Kinderen</a></li>
-          <li><a href="#" ng-click="getCategories('Tassen')">Tassen</a></li>
-           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wonen<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" ng-click="getCategories('Feestartikelen')">Feestartikelen</a></li>
-              <li><a href="#" ng-click="getCategories('Decoratie')">Home Decoratie</a></li>
-              <li><a href="#" ng-click="getCategories('Kantoor')">Kantoor</a></li>
-              <li><a href="#" ng-click="getCategories('Keuken')">Keuken</a></li>
-              <li><a href="#" ng-click="getCategories('Manden')">Manden</a></li>
-              <li><a href="#" ng-click="getCategories('Cadeaubonnen')">Cadeaubonnen</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-    <!--menu code ends-->   
-    <div class="container">
-      <div class="row-fluid">
-          <div class="row-fluid" >
-	          <div ng-repeat="product in allProducts" ng-switch on="$index % 3">
-	          	<div ng-switch-when="0">
-                <div class="col-md-12">
-	          		<div class="col-md-4" ng-repeat="i in [0,1,2]" ng-init="item=allProducts[$parent.$index+ i]">
-                        <div class="row-fluid" ng-if="item">
-                            <div class="col-md-12">
-                             <div ng-if="item.hashtags"> 
-                                <span class="limittxt block align-left fltlft">{{item.hashtags}}</span>
-                            </div>    
-    	          			  <div class="items" 
-                              ng-click="goToPDP(item.url)">
-                                    <div style="position:relative;">
-                                    <div class="banners" >
-                                        <img class="product-image hidden-sm" src={{item.image}}>
-                                    </div>    
-                                    <div class="product-sizes" style="display:none;" showonhoverparent>
-                                        <ul>
-                                            <div class="display-size" ng-repeat="size in item.sizes">
-                                                <li>{{size}}</li>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- <a class="navbar-brand" href="#">Brand Logo</a> -->
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Alle Producten</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dames<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="getCategories('Cardigans')">Cardigans & Vesten</a></li>
+                            <li><a href="#" ng-click="getCategories('Jurken')">Jurken</a></li>
+                            <li><a href="#" ng-click="getCategories('Jeans')">Jeans & Broeken</a></li>
+                            <li><a href="#" ng-click="getCategories('Rokken')">Rokken</a></li>
+                            <li><a href="#" ng-click="getCategories('Tops')">Tops</a></li>
+                            <li><a href="#" ng-click="getCategories('t-shirt')">T-shirts</a></li>
+                            <li><a href="#" ng-click="getCategories('tank-top')">Tanktops</a></li>
+                            <li><a href="#" ng-click="getCategories('sweater')">Sweaters</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Accesories<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="getCategories('Armbanden')">Armbanden</a></li>
+                            <li><a href="#" ng-click="getCategories('Kettingen')">Kettingen </a></li>
+                            <li><a href="#" ng-click="getCategories('Oorbellen')">Oorbellen</a></li>
+                            <li><a href="#" ng-click="getCategories('Sjaals en Stola's')">Sjaals & Stola's</a></li>
+                            <li><a href="#" ng-click="getCategories('Portemonnees')">Portemonnees</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Heren<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="getCategories('Tops')">Tops</a></li>
+                            <li><a href="#" ng-click="getCategories('t-shirt')">T-shirts </a></li>
+                            <li><a href="#" ng-click="getCategories('tank-top')">Tanktops</a></li>
+                            <li><a href="#" ng-click="getCategories('Sweater')">Sweaters</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" ng-click="getCategories('Kind')">Kinderen</a></li>
+                    <li><a href="#" ng-click="getCategories('Tassen')">Tassen</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wonen<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" ng-click="getCategories('Feestartikelen')">Feestartikelen</a></li>
+                            <li><a href="#" ng-click="getCategories('Decoratie')">Home Decoratie</a></li>
+                            <li><a href="#" ng-click="getCategories('Kantoor')">Kantoor</a></li>
+                            <li><a href="#" ng-click="getCategories('Keuken')">Keuken</a></li>
+                            <li><a href="#" ng-click="getCategories('Manden')">Manden</a></li>
+                            <li><a href="#" ng-click="getCategories('Cadeaubonnen')">Cadeaubonnen</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!--menu code ends-->
+    <div class="container allproducts-block">
+        <div class="row-fluid">
+            <div ng-repeat="product in allProducts" ng-switch on="$index % 3">
+                <div ng-switch-when="0">
+                    <div class="col-md-12">
+                        <div class="col-md-4" ng-repeat="i in [0,1,2]" ng-init="item=allProducts[$parent.$index+ i]">
+                            <div class="row-fluid" ng-if="item">
+                                <div class="col-md-12">
+                                    <div ng-if="item.hashtags">
+                                        <span class="limittxt block align-left fltlft">{{item.hashtags}}</span>
+                                    </div>
+                                    <div class="items" ng-click="goToPDP(item.url)">
+                                        <div style="position:relative;">
+                                            <div class="banners">
+                                                <img class="product-image hidden-sm" src={{item.image}}>
                                             </div>
-                                        </ul>    
+                                            <div class="product-sizes" style="display:none;" showonhoverparent>
+                                                <ul>
+                                                    <div class="display-size" ng-repeat="size in item.sizes">
+                                                        <li>{{size}}</li>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-title">{{item.title}}</div>
+                                        <div class="col-md-6 pull-left">
+                                            <div class="product-price">&euro;{{item.price}}</div>
+                                        </div>
+                                        <div class="col-md-6 pull-right">
+                                            <a href="http://ingar.nl"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="product-title">{{item.title}}</div>
-                                <div class="col-md-6 pull-left">
-                                    <div class="product-price">&euro;{{item.price}}</div>
-                                </div>
-                                <div class="col-md-6 pull-right">  
-                                <a href="http://ingar.nl"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
-                                </div>
-                            </div> 
+                            </div>
                         </div>
-		          		</div>	
-	          		</div>
-	          		</div>
-	          	</div>
-	          </div>
+                    </div>
+                </div>
             </div>
-    	</div>  
-  </body>
-  <script>
-    </script>
+        </div>
+    </div>
+</body>
+<script>
+</script>
+
 </html>
