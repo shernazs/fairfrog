@@ -1,5 +1,5 @@
 angular.module('webshop', [
-		'webshop.controllers'
+		'webshop.controllers',
 ])
 .config([
 	'$httpProvider',
