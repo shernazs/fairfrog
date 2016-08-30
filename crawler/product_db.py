@@ -1,9 +1,9 @@
-#!/home/fairfrog/.conda/envs/kush_checkout/bin/python
 import sqlite3 as sqlite
 import glob
 import json 
 from datetime import datetime
 import logging
+
 
 def set_log():
 	logfile = '/home/fairfrog/Logs/crawler_DB_' + datetime.today().strftime('%y-%m-%d') + '.log'
@@ -19,7 +19,7 @@ def set_log():
 def setupDBCon():
 	con = sqlite.connect('/home/fairfrog/Database/products.db')
 	cursor = con.cursor()
-        return con, cursor
+	return con, cursor
 
 
 def closeDB(con):
@@ -29,25 +29,45 @@ def closeDB(con):
 def createAndCheckTables(cursor):
 	#title url description webshop_name product_cat style image price discount_price sizes brand
 	cursor.execute('CREATE TABLE IF NOT EXISTS Products \
-		(Id INTEGER PRIMARY KEY, Webshop VARCHAR(50), Title VARCHAR(100), Description TEXT, Url VARCHAR(2000), \
-		Image VARCHAR(2000), Logo VARCHAR(2000), Style VARCHAR(3), Brand VARCHAR(100), Price DOUBLE, Discount_price DOUBLE,\
-		Sizes TEXT, Categories TEXT, Hashtags TEXT)')
-	cursor.execute('CREATE TABLE IF NOT EXISTS Popular_Products (Id INTEGER PRIMARY KEY, Product_Id VARCHAR(5))')
+	(Id INTEGER PRIMARY KEY, Webshop VARCHAR(50), Title VARCHAR(100), Description TEXT, Url VARCHAR(2000), \
+	Image VARCHAR(2000), Logo VARCHAR(2000), Style VARCHAR(3), Brand VARCHAR(100), Price DOUBLE, Discount_price DOUBLE,\
+	Sizes TEXT, Categories TEXT, Hashtags TEXT)')
+	cursor.execute('CREATE TABLE IF NOT EXISTS Popular_Products (Id INTEGER PRIMARY KEY, Product_Id VARCHAR(5), FOREIGN KEY(Product_Id) REFERENCES Products(Id))')
+	cursor.execute('CREATE TABLE IF NOT EXISTS Advertorial_Products (Id INTEGER PRIMARY KEY, Product_Id VARCHAR(5), FOREIGN KEY(Product_Id) REFERENCES Products(Id))')
 
 
 def storeInDb(logger, con, cursor):
 	product_files = glob.glob('/home/fairfrog/FairFrog/Code/fairfrog/crawler/*/products.json')
 	data = []
+
 	for product_file in product_files:
 		with open(product_file) as data_file:
 			data.extend(json.load(data_file))
-	result = cursor.execute("select Webshop, Title, Url from Products")
-	test_data = map(lambda x: (x.get('webshop_name'), x.get('title'), x.get('url')), data)	
-	data_DB = filter(lambda x: x in test_data, result)
+
+	result = set(cursor.execute("select Webshop, Title, Url from Products"))
+	identifier_data = set(map(lambda x: (x.get('webshop_name'), x.get('title'), x.get('url')), data))
+	data_DB = result & identifier_data
+	remove_DB = result - identifier_data
+
+	"""
+	for product in remove_DB:
+		cursor.execute('DELETE FROM Products WHERE Webshop = ? AND Title = ? AND Url = ?',
+			(product[0], product[1], product[2]))
+	"""
+
 	for item in data:
+		if item.get('discount_price') < item.get('price') and 'sale' not in item.get('product_cat'):
+		    item['product_cat'] += '|sale'
+		if ' collectie' in item.get('product_cat'):
+		    item['product_cat'] = item['product_cat'].replace(' collectie', '')
+
 		if (item.get('webshop_name'), item.get('title'), item.get('url')) in data_DB: 
-			logger.info("Item already in Database: " + '\t\t'.join((item.get('webshop_name'), 
-				item.get('title'), item.get('url'))))
+			cursor.execute('UPDATE Products SET Price = ?, Discount_price = ?, Categories = ?, Hashtags = ? \
+				WHERE Webshop = ? AND Title = ? AND Url = ?', 
+				(item.get('price',''), item.get('discount_price',''), item.get('product_cat', ''), item.get('hashtags',''), 
+				item.get('webshop_name', ''), item.get('title', ''), item.get('url','')))
+			logger.info("Product price and discount price update for item already in Database: " + 
+				'\t\t'.join((item.get('webshop_name'), item.get('title'), item.get('url'))))
 		else:
 			cursor.execute("Insert Into Products ( Webshop, Title, Description, Url, Image, Logo, Style, \
 				Brand, Price, Discount_price, Sizes, Categories, Hashtags) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
@@ -65,13 +85,13 @@ def main():
 	logger = set_log()
 	logger.info("Setting up Database connection...")
 	connection, cursor = setupDBCon()
-	try:
-		createAndCheckTables(cursor)
-		storeInDb(logger, connection, cursor)
-	except Exception as e:
-		logger.error(e)
-	finally:
-		closeDB(connection)
+	#try:
+	createAndCheckTables(cursor)
+	storeInDb(logger, connection, cursor)
+	#except Exception as e:
+	#logger.error(e)
+	#finally:
+	closeDB(connection)
 
 
 if __name__ == "__main__":
