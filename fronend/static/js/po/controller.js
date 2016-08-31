@@ -90,7 +90,7 @@ angular.module('webshop.controllers', [])
   $scope.getCategories = function(categories) {
     console.log("in get categories");
 
-    caturl = "http://fairfrog.noip.me:8000/get_products?cat=" + categories
+    caturl = "http://127.0.0.1:8000/get_products?cat=" + categories
     console.log(caturl);
     var config = {
           type: "GET",
