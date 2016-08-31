@@ -11,7 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
     <link rel='stylesheet prefetch' href='http:////netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
-    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- Angular -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular-route.js"></script>
@@ -60,59 +60,60 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="menu-li"><a href="#">Alle Producten</a></li>
+                    <li class="menu-li"><a href="#" ng-click="getProducts('')">Alle Producten</a></li>
                     <li class="dropdown menu-li">
-                        <a href="#" ng-click="getCategories('Dames')" class="dropdown-toggle" data-toggle="dropdown">Dames<b class="caret"></b></a>
+                        <a href="#" ng-click="getProducts('Dames')" class="dropdown-toggle" data-toggle="dropdown">Dames<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" ng-click="getCategories('Cardigans')">Cardigans & Vesten</a></li>
-                            <li><a href="#" ng-click="getCategories('Jurken')">Jurken</a></li>
-                            <li><a href="#" ng-click="getCategories('Jeans')">Jeans & Broeken</a></li>
-                            <li><a href="#" ng-click="getCategories('Rokken')">Rokken</a></li>
-                            <li><a href="#" ng-click="getCategories('Tops')">Tops</a></li>
-                            <li><a href="#" ng-click="getCategories('t-shirt')">T-shirts</a></li>
-                            <li><a href="#" ng-click="getCategories('tank-top')">Tanktops</a></li>
-                            <li><a href="#" ng-click="getCategories('sweater')">Sweaters</a></li>
+                            <li><a href="#" ng-click="getProducts('Cardigans')">Cardigans & Vesten</a></li>
+                            <li><a href="#" ng-click="getProducts('Jurken')">Jurken</a></li>
+                            <li><a href="#" ng-click="getProducts('Jeans')">Jeans & Broeken</a></li>
+                            <li><a href="#" ng-click="getProducts('Rokken')">Rokken</a></li>
+                            <li><a href="#" ng-click="getProducts('Tops')">Tops</a></li>
+                            <li><a href="#" ng-click="getProducts('t-shirt')">T-shirts</a></li>
+                            <li><a href="#" ng-click="getProducts('tank-top')">Tanktops</a></li>
+                            <li><a href="#" ng-click="getProducts('sweater')">Sweaters</a></li>
                         </ul>
                     </li>
                     <li class="dropdown menu-li">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accesories<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" ng-click="getCategories('Armbanden')">Armbanden</a></li>
-                            <li><a href="#" ng-click="getCategories('Kettingen')">Kettingen </a></li>
-                            <li><a href="#" ng-click="getCategories('Oorbellen')">Oorbellen</a></li>
-                            <li><a href="#" ng-click="getCategories('Sjaals en Stolas')">Sjaals & Stola's</a></li>
-                            <li><a href="#" ng-click="getCategories('Portemonnees')">Portemonnees</a></li>
+                            <li><a href="#" ng-click="getProducts('Armbanden')">Armbanden</a></li>
+                            <li><a href="#" ng-click="getProducts('Kettingen')">Kettingen </a></li>
+                            <li><a href="#" ng-click="getProducts('Oorbellen')">Oorbellen</a></li>
+                            <li><a href="#" ng-click="getProducts('Sjaals en Stolas')">Sjaals & Stola's</a></li>
+                            <li><a href="#" ng-click="getProducts('Portemonnees')">Portemonnees</a></li>
                         </ul>
                     </li>
                     <li class="dropdown menu-li">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Heren<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" ng-click="getCategories('Tops')">Tops</a></li>
-                            <li><a href="#" ng-click="getCategories('T-shirts')">T-shirts </a></li>
-                            <li><a href="#" ng-click="getCategories('Tanktops')">Tanktops</a></li>
-                            <li><a href="#" ng-click="getCategories('Sweaters')">Sweaters</a></li>
+                            <li><a href="#" ng-click="getProducts('Tops')">Tops</a></li>
+                            <li><a href="#" ng-click="getProducts('T-shirts')">T-shirts </a></li>
+                            <li><a href="#" ng-click="getProducts('Tanktops')">Tanktops</a></li>
+                            <li><a href="#" ng-click="getProducts('Sweaters')">Sweaters</a></li>
                         </ul>
                     </li>
-                    <li class="menu-li"><a href="#" ng-click="getCategories('Kinderen')">Kinderen</a></li>
-                    <li class="menu-li"><a href="#" ng-click="getCategories('Tassen')">Tassen</a></li>
+                    <li class="menu-li"><a href="#" ng-click="getProducts('Kinderen')">Kinderen</a></li>
+                    <li class="menu-li"><a href="#" ng-click="getProducts('Tassen')">Tassen</a></li>
                     <li class="dropdown menu-li">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wonen<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" ng-click="getCategories('Feestartikelen')">Feestartikelen</a></li>
-                            <li><a href="#" ng-click="getCategories('Home Decoratie')">Home Decoratie</a></li>
-                            <li><a href="#" ng-click="getCategories('Kantoor')">Kantoor</a></li>
-                            <li><a href="#" ng-click="getCategories('Keuken')">Keuken</a></li>
-                            <li><a href="#" ng-click="getCategories('Manden')">Manden</a></li>
-                            <li><a href="#" ng-click="getCategories('Cadeaubonnen')">Cadeaubonnen</a></li>
+                            <li><a href="#" ng-click="getProducts('Feestartikelen')">Feestartikelen</a></li>
+                            <li><a href="#" ng-click="getProducts('Home Decoratie')">Home Decoratie</a></li>
+                            <li><a href="#" ng-click="getProducts('Kantoor')">Kantoor</a></li>
+                            <li><a href="#" ng-click="getProducts('Keuken')">Keuken</a></li>
+                            <li><a href="#" ng-click="getProducts('Manden')">Manden</a></li>
+                            <li><a href="#" ng-click="getProducts('Cadeaubonnen')">Cadeaubonnen</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </nav>
     </div>
     <!--menu code ends-->
-    <div class="container-fluid bg-image">
+    <!-- homepage block starts-->
+    <div ng-if="homepage">
+    <div class="container-fluid bg-image" >
         <div class="row-fluid">
             <div class="parallax"></div>
         </div>
@@ -203,6 +204,52 @@
                 </div>
             </div>
         </div>
+    </div>  
+    </div>  
+        <!--homepage block ends here ->
+        <!--products block starts here -->
+        <div class="container allproducts-block">
+        <div class="row-fluid">
+            <div ng-repeat="product in allProducts" ng-switch on="$index % 3">
+                <div ng-switch-when="0">
+                    <div class="col-md-12">
+                        <div class="col-md-4" ng-repeat="i in [0,1,2]" ng-init="item=allProducts[$parent.$index+ i]">
+                            <div class="row-fluid" ng-if="item">
+                                <div class="col-md-12">
+                                    <div ng-if="item.hashtags">
+                                        <span class="limittxt block align-left fltlft">{{item.hashtags}}</span>
+                                    </div>
+                                    <div class="items" ng-click="goToPDP(item.url)">
+                                        <div style="position:relative;">
+                                            <div class="banners">
+                                                <img class="product-image hidden-sm" src={{item.image}}>
+                                            </div>
+                                            <div class="product-sizes" style="display:none;" showonhoverparent>
+                                                <ul>
+                                                    <div class="display-size" ng-repeat="size in item.sizes">
+                                                        <li>{{size}}</li>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-title">{{item.title}}</div>
+                                        <div class="col-md-6 pull-left">
+                                            <div class="product-price">&euro;{{item.price}}</div>
+                                        </div>
+                                        <div class="col-md-6 pull-right">
+                                            <a href="http://ingar.nl"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--products block ends here -->
+        <!--footer block starts here-->
         <div class="container footer-block">
             <div class="row-fluid">
                 <div class="span3 pull-right">
@@ -227,6 +274,6 @@
                 </div>
             </div>
         </div>
-</body>
-
+        <!--footer block ends here-->
+    </body>
 </html>
