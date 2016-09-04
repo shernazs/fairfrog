@@ -3,10 +3,13 @@ import glob
 import json 
 from datetime import datetime
 import logging
+import os
+
+root = os.getenv('HOME', '/home/fairfrog/')
 
 
 def set_log():
-	logfile = '/home/fairfrog/Logs/crawler_DB_' + datetime.today().strftime('%y-%m-%d') + '.log'
+	logfile = root + '/Logs/crawler_DB_' + datetime.today().strftime('%y-%m-%d') + '.log'
 	logger = logging.getLogger('database_insert')
 	handler = logging.FileHandler(logfile, mode='a')
 	formatter = logging.Formatter('%(asctime)s\t[%(levelname)s]\t%(message)s')
@@ -17,7 +20,7 @@ def set_log():
 
 
 def setupDBCon():
-	con = sqlite.connect('/home/fairfrog/Database/products.db')
+	con = sqlite.connect(root + '/Database/products.db')
 	cursor = con.cursor()
 	return con, cursor
 
@@ -37,7 +40,7 @@ def createAndCheckTables(cursor):
 
 
 def storeInDb(logger, con, cursor):
-	product_files = glob.glob('/home/fairfrog/FairFrog/Code/fairfrog/crawler/*/products.json')
+	product_files = glob.glob('./*/products.json')
 	data = []
 
 	for product_file in product_files:
@@ -49,11 +52,9 @@ def storeInDb(logger, con, cursor):
 	data_DB = result & identifier_data
 	remove_DB = result - identifier_data
 
-	"""
 	for product in remove_DB:
 		cursor.execute('DELETE FROM Products WHERE Webshop = ? AND Title = ? AND Url = ?',
 			(product[0], product[1], product[2]))
-	"""
 
 	for item in data:
 		if item.get('discount_price') < item.get('price') and 'sale' not in item.get('product_cat'):

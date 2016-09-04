@@ -16,7 +16,7 @@ angular.module('webshop.controllers', [])
    $scope.getAdvertorialProducts = function() {
     var config = {
           type: "GET",
-          url: "http://localhost:8000/shop/get_advertorial_products",
+          url: "http://localhost:8000/shop/get_featured_products",
           dataType: 'json',
           data: {
           },
@@ -92,10 +92,12 @@ angular.module('webshop.controllers').directive('showonhoverparent',function() {
       return {
          link : function(scope, element, attrs) {
             element.parent().parent().bind('mouseenter', function() {
-                element.show();
+                var div = element.childNodes[0];
+      			div.style.display = "block";
             });
             element.parent().parent().bind('mouseleave', function() {
-                 element.hide();
+                 var div = element.childNodes[0];
+      			 div.style.display = "none";
             });
        }
    };

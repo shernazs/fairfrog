@@ -22,7 +22,7 @@ def index(request):
 	return HttpResponse("FairFrog says: Hey there, world!")
 
 
-def get_advertorial_products(request):
+def get_featured_products(request):
 	logger = set_log()
 	response = {'status': 0}
 	product_ids = Advertorial_Products.objects.all()
@@ -48,7 +48,7 @@ def get_advertorial_products(request):
 	except Exception as e:
 		logger.error(e, exc_info=True, extra={'request': request})
 
-	response['advertorial_products_list'] = products_list
+	response['featured_products_list'] = products_list
 	response['status'] = 1
 	return HttpResponse(json.dumps(response), content_type='application/json')
 

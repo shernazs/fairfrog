@@ -113,6 +113,7 @@
     <!--menu code ends-->
     <!-- homepage block starts-->
     <div ng-if="homepage">
+<!-- Image -->
     <div class="container-fluid bg-image" >
         <div class="row-fluid">
             <div class="parallax"></div>
@@ -151,7 +152,7 @@
                                                 <div class="product-price">&euro;{{item.price}}</div>
                                             </div>
                                             <div class="col-md-6 pull-right">
-                                                <a href="http://ingar.nl"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
+                                                <a href="{{item.webshop_url}}"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +194,7 @@
                                                 <div class="product-price">&euro;{{item.price}}</div>
                                             </div>
                                             <div class="col-md-6 pull-right">
-                                                <a href="http://ingar.nl"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
+                                                <a href="{{item.webshop_url}}"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
                                             </div>
                                         </div>
                                     </div>
@@ -206,7 +207,7 @@
         </div>
     </div>  
     </div>  
-        <!--homepage block ends here ->
+        <!--homepage block ends here -->
         <!--products block starts here -->
         <div class="container allproducts-block">
         <div class="row-fluid">
@@ -237,7 +238,7 @@
                                             <div class="product-price">&euro;{{item.price}}</div>
                                         </div>
                                         <div class="col-md-6 pull-right">
-                                            <a href="http://ingar.nl"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
+                                            <a href="{{item.webshop_url}}"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
                                         </div>
                                     </div>
                                 </div>
