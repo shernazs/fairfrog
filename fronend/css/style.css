@@ -28,8 +28,8 @@ h1.title {
 }
 
 img.product-image {
-  width: 280px;
-  height: 280px;
+  width: 270px;
+  height: 260px;
   margin-top: 5px;
 }
 
@@ -363,3 +363,12 @@ li.menu-li:hover{
 }
 
 /*menu code ends*/
+
+.old-price {
+  text-decoration: line-through;
+  font-size:14px;
+}
+
+.new-price {
+  margin-left: 5px;
+}

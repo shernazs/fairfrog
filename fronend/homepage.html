@@ -75,7 +75,7 @@
                         </ul>
                     </li>
                     <li class="dropdown menu-li">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accesories<b class="caret"></b></a>
+                        <a href="#" ng-click="getProducts('accesso')" class="dropdown-toggle" data-toggle="dropdown">Accesories<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" ng-click="getProducts('Armbanden')">Armbanden</a></li>
                             <li><a href="#" ng-click="getProducts('Kettingen')">Kettingen </a></li>
@@ -85,7 +85,7 @@
                         </ul>
                     </li>
                     <li class="dropdown menu-li">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Heren<span class="caret"></span></a>
+                        <a href="#" ng-click="getProducts('heren')" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Heren<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" ng-click="getProducts('Tops')">Tops</a></li>
                             <li><a href="#" ng-click="getProducts('T-shirts')">T-shirts </a></li>
@@ -96,7 +96,7 @@
                     <li class="menu-li"><a href="#" ng-click="getProducts('Kinderen')">Kinderen</a></li>
                     <li class="menu-li"><a href="#" ng-click="getProducts('Tassen')">Tassen</a></li>
                     <li class="dropdown menu-li">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wonen<span class="caret"></span></a>
+                        <a href="#" ng-click="getProducts('wonen')" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wonen<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#" ng-click="getProducts('Feestartikelen')">Feestartikelen</a></li>
                             <li><a href="#" ng-click="getProducts('Home Decoratie')">Home Decoratie</a></li>
@@ -105,6 +105,9 @@
                             <li><a href="#" ng-click="getProducts('Manden')">Manden</a></li>
                             <li><a href="#" ng-click="getProducts('Cadeaubonnen')">Cadeaubonnen</a></li>
                         </ul>
+                    </li>
+                    <li class="dropdown menu-li">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-click="getProducts('sale')">Sale</a>
                     </li>
                 </ul>
             </div>
@@ -151,7 +154,7 @@
                                                 <div class="product-price">&euro;{{item.price}}</div>
                                             </div>
                                             <div class="col-md-6 pull-right">
-                                                <a href="http://ingar.nl"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
+                                                <a href="{{item.webshop_url}}"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +196,7 @@
                                                 <div class="product-price">&euro;{{item.price}}</div>
                                             </div>
                                             <div class="col-md-6 pull-right">
-                                                <a href="http://ingar.nl"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
+                                                <a href="{{item.webshop_url}}"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
                                             </div>
                                         </div>
                                     </div>
@@ -234,10 +237,14 @@
                                         </div>
                                         <div class="product-title">{{item.title}}</div>
                                         <div class="col-md-6 pull-left">
-                                            <div class="product-price">&euro;{{item.price}}</div>
+                                            <div ng-show="{{item.price!=item.discount_price}}">
+                                                <div class="product-price old-price">&euro;{{item.price}}</div>
+                                                <div class="product-price new-price">&euro;{{item.discount_price}}</div>
+                                            </div>
+                                            <div ng-show="{{item.price==item.discount_price}}" class="product-price">&euro;{{item.price}}</div>
                                         </div>
                                         <div class="col-md-6 pull-right">
-                                            <a href="http://ingar.nl"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
+                                            <a href="{{item.webshop_url}}"><img class="client-logo" src="{{item.webshop_logo}}" alt="Fairtrade dameskleding, sieraden en accessoires."></a>
                                         </div>
                                     </div>
                                 </div>
