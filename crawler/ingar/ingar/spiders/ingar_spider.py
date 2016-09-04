@@ -48,4 +48,5 @@ class StackSpider(Spider):
 		product['brand'] = brand
 		product['webshop_name'] = "Ingar"
 		product['webshop_logo'] = "http://ingar.nl/wp-content/uploads/shop/Ingar-logo2.png"
+		product['webshop_url'] = "http://ingar.nl/"
 		yield product

@@ -20,6 +20,7 @@ class HetGroeneSchaap_Spider(Spider):
 		item['title'] = product.xpath('//h1[@class="product-title"]/text()').extract()[0].strip()
 		item['webshop_name'] = "Het Groene Schaap"
 		item['webshop_logo'] = "https://static.mijnwebwinkel.nl/winkel/het-groene-schaap/nl_NL_image_header_4.png?t=1471936616"
+		item['webshop_url'] = "http://www.hetgroeneschaap.nl/"
 		item['brand'] = "Het Groene Schaap"
 		item['url'] = response.url
 		item['description'] = ' '.join(product.xpath('//div[@data-tab-content="description"]//text()').extract()).strip()

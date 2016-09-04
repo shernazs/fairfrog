@@ -13,6 +13,7 @@ class EmaxDominaItem(Item):
 	description = Field()
 	webshop_name = Field()
 	webshop_logo = Field()
+	webshop_url = Field()
 	product_cat = Field()
 	image = Field()
 	price = Field()

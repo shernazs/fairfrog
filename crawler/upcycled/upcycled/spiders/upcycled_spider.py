@@ -18,6 +18,7 @@ class Upcycled_Spider(Spider):
 		item['title'] = product.xpath('//h1[@class="product-title"]/text()').extract()[0].strip().encode('UTF-8')
 		item['webshop_name'] = "Upcycled"
 		item['webshop_logo'] = "http://upcycled.nl/img/upcycled-logo-klein-zwart-2.png"
+		item['webshop_url'] = "http://upcycled.nl/"
 		item['brand'] = "Upcycled"
 		item['url'] = response.url
 		item['description'] = '\n'.join(product.xpath('//div[@data-tab-content="description"]//p/text()').extract()).encode('UTF-8')

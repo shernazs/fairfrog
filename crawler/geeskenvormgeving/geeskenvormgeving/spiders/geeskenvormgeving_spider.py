@@ -20,10 +20,11 @@ class Geeskenvormgeving_Spider(Spider):
 		product = response.xpath('//ul[@class="list full"]')
 		item = GeeskenvormgevingItem()
 		item['title'] = '-'.join(product.xpath('//h3[@class="title"]/text()').extract()[0].split('-')[:-1])
-		item['webshop_name'] = "Emax Domina"
+		item['webshop_name'] = "Geeskenvormgeving"
 		item['webshop_logo'] = "http://fairfrog.nl/wp-content/uploads/2016/08/EmaxDominaLogo.png"
+		item['webshop_url'] = "https://www.etsy.com/nl/shop/geeskenvormgeving"
 		item['image'] = response.urljoin(product.xpath('//div[@class="image"]/a/img/@src').extract()[0])
-		item['brand'] = "Emax Domina"
+		item['brand'] = "Geeskenvormgeving"
 		item['url'] = response.url
 		item['description'] = product.xpath('//div[@class="text"]//text()').extract()[0].encode('UTF-8')
 		item['product_cat'] = response.xpath('//ul[@class="selector"]/li/div[@class="title"]/a/text()').extract()[0]

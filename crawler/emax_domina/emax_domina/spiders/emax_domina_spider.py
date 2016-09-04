@@ -22,6 +22,7 @@ class Emax_Domina_Spider(Spider):
 		item['title'] = '-'.join(product.xpath('//h3[@class="title"]/text()').extract()[0].split('-')[:-1])
 		item['webshop_name'] = "Emax Domina"
 		item['webshop_logo'] = "http://fairfrog.nl/wp-content/uploads/2016/08/EmaxDominaLogo.png"
+		item['webshop_url'] = "http://www.emaxdomina.nl/nl_nl/welkom/"
 		item['image'] = response.urljoin(product.xpath('//div[@class="image"]/a/img/@src').extract()[0])
 		item['brand'] = "Emax Domina"
 		item['url'] = response.url

@@ -20,6 +20,7 @@ class OrganicWear_Spider(Spider):
 		item['title'] = product.xpath('//h1[@itemprop="name"]/text()').extract()[0]
 		item['webshop_name'] = "Organic Wear"
 		item['webshop_logo'] = "http://fairfrog.nl/wp-content/uploads/2016/08/OrganicWearLogo.png"
+		item['webshop_url'] = "http://organicwear.nl/"
 		item['brand'] = "Organic Wear"
 		item['url'] = response.url
 		item['description'] = '\n'.join(product.xpath('//div[@itemprop="description"]/p/text()').extract()[:-1]).encode('UTF-8')

@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import json
-from shop.models import Products, Popular_Products, Advertorial_Products
+from shop.models import Products, Popular_Products, Featured_Products
 import logging
 from datetime import datetime
-from random import shuffle
 
 
 def set_log():
@@ -25,7 +24,7 @@ def index(request):
 def get_featured_products(request):
 	logger = set_log()
 	response = {'status': 0}
-	product_ids = Advertorial_Products.objects.all()
+	product_ids = Featured_Products.objects.all()
 	products_list = []
 	try:
 		for product_id in product_ids:
@@ -35,6 +34,7 @@ def get_featured_products(request):
 			temp_product['title'] = product.Title
 			temp_product['webshop_name'] = product.Webshop
 			temp_product['webshop_logo'] = product.Logo
+			temp_product['webshop_url'] = product.Webshop_Url
 			temp_product['url'] = product.Url
 			temp_product['image'] = product.Image
 			temp_product['price'] = product.Price
@@ -66,6 +66,7 @@ def get_popular_products(request):
 			temp_product['title'] = product.Title
 			temp_product['webshop_name'] = product.Webshop
 			temp_product['webshop_logo'] = product.Logo
+			temp_product['webshop_url'] = product.Webshop_Url
 			temp_product['url'] = product.Url
 			temp_product['image'] = product.Image
 			temp_product['price'] = product.Price
@@ -102,6 +103,7 @@ def get_products(request):
 			temp_product['title'] = product.Title
 			temp_product['webshop_name'] = product.Webshop
 			temp_product['webshop_logo'] = product.Logo
+			temp_product['webshop_url'] = product.Webshop_Url
 			temp_product['url'] = product.Url
 			temp_product['image'] = product.Image
 			temp_product['price'] = product.Price
