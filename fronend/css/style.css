@@ -24,12 +24,12 @@ h1.title {
   overflow: hidden;
   background: #fff;
   padding-bottom: 50px;
-  max-height: 400px;
+  max-height: 450px;
 }
 
 img.product-image {
-  width: 200px;
-  height: 250px;
+  width: 280px;
+  height: 280px;
   margin-top: 5px;
 }
 
@@ -144,6 +144,8 @@ img {
 
 .display-size {
   float: left;
+  margin-left: 45px;
+  color:white;
 }
 
 .banners:hover > img {
